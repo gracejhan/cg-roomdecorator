@@ -1094,6 +1094,7 @@ bool loadOBJ()
         VertexBufferObject VBO_V;
         VBO_V.init();
         VBO_V.update(V);
+        cerr << V.col(0) << endl;
 
         VertexBufferObject VBO_UV;
         VBO_V.init();
@@ -1141,10 +1142,7 @@ bool loadOBJCube()
     {
         while(1){
             fgets(Buffer, sizeof(Buffer), pFile);
-
-            if(Buffer == "EOF") 
-                break;
-            
+            // if (strstr(Buffer, "v "))
             if (Buffer[0] == 'v')
             {
                 Vector3f vertex;
@@ -1165,14 +1163,14 @@ bool loadOBJCube()
                 cerr << "reading f" << endl;
                 std::string vertex1, vertex2, vertex3;
                 unsigned int vertexIndex[3], uvIndex[3], normalIndex[3];
-                int matches = fscanf(pFile, "%d/%d/%d %d/%d/%d %d/%d/%d\n", 
+                fscanf(pFile, "%d/%d/%d %d/%d/%d %d/%d/%d\n", 
                     &vertexIndex[0], &uvIndex[0], &normalIndex[0], 
                     &vertexIndex[1], &uvIndex[1], &normalIndex[1], 
                     &vertexIndex[2], &uvIndex[2], &normalIndex[2] );
-                if (matches != 9) {
-                    printf("File cannot be read correctly.\n");
-                    return false;
-                }
+                // if (matches != 9) {
+                //     printf("File cannot be read correctly.\n");
+                //     return false;
+                // }
                 vertexIndices.push_back(vertexIndex[0]);
                 vertexIndices.push_back(vertexIndex[1]);
                 vertexIndices.push_back(vertexIndex[2]);
@@ -1183,7 +1181,7 @@ bool loadOBJCube()
                 normalIndices.push_back(normalIndex[1]);
                 normalIndices.push_back(normalIndex[2]);
 
-                cerr << "normalIndices: " << normalIndices.size() << endl;
+                cerr << "vertexIndices: " << vertexIndices.size() << endl;
             }
         }
     }

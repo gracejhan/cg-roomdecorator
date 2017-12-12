@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11   CMakeFiles/Assignment2_bin.dir/src/main.cpp.o CMakeFiles/Assignment2_bin.dir/src/Helpers.cpp.o  -o Assignment2_bin -rdynamic libglfw3.a -lrt -lm -lX11 -lpthread -lXrandr -lXinerama -lXi -lXxf86vm -lXcursor -lGL -ldl libglew.a 
