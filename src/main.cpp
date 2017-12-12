@@ -59,10 +59,10 @@ VBO_vector vec_VBO_UV;
 VBO_vector vec_VBO_N;
 VBO_vector vec_VBO_C;
 VBO_vector vec_VBO_N_ver;
-VBO_vector vec_VBO_N_tri;
+// VBO_vector vec_VBO_N_tri;
 Matrix_vector vec_Mat_Model;    // Vector with modelMatrix matrix
 Matrix_vector vec_Mat_Vertex;   // Vector with V matrix
-std::vector<double> vec_obj_depth;
+// std::vector<double> vec_obj_depth;
 
 Matrix4f M_aspect;
 Matrix4f M_vp;
@@ -85,9 +85,9 @@ double ScaleRatio = 1.0;
 double rot_angle = 0.;
 
 // Store the depth of each object
-double depth_cube;
-double depth_bumpy;
-double depth_bunny;
+// double depth_cube;
+// double depth_bumpy;
+// double depth_bunny;
 int selected_obj_id;
 
 int draw_count = 0;
@@ -135,7 +135,7 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
     {
         Vector2d mouse_position;
         mouse_position << p_canonical(0), p_canonical(1);
-        double min_depth = 1.;
+        // double min_depth = 1.;
         for(int i = 0; i < vec_VBO_V.size(); i++)
         {
             int selected = -1;
@@ -183,7 +183,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
                 m = DrawCubeMode;
                 obj_count += 1;
                 ReadCube();
-                vec_obj_depth.push_back(depth_cube);
+                // vec_obj_depth.push_back(depth_cube);
             }
             break;
         case GLFW_KEY_2:
@@ -192,7 +192,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
                 m = ImportBcubeMode;
                 obj_count += 1;
                 ReadFile();
-                vec_obj_depth.push_back(depth_bumpy);
+                // vec_obj_depth.push_back(depth_bumpy);
             }
             break;
         case  GLFW_KEY_3:
@@ -201,7 +201,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
                 m = ImportBunnyMode;
                 obj_count += 1;
                 ReadFile();
-                vec_obj_depth.push_back(depth_bunny);
+                // vec_obj_depth.push_back(depth_bunny);
             }
             break;
         case  GLFW_KEY_4:
@@ -691,7 +691,7 @@ void ReadCube()
     0, 0, 1, 0,
     0, 0, 0, 1;
 
-    MatrixXf TriNormalMatrix(3, V.cols()/3);
+    // MatrixXf TriNormalMatrix(3, V.cols()/3);
     MatrixXf VerNormalMatrix(3, V.cols());
     for(int n = 0; n < V.cols()/3; n++)
     {
@@ -704,7 +704,7 @@ void ReadCube()
 
         Vector3f tri_normal = l0.cross(l1).normalized();
 
-        TriNormalMatrix.col(n) = tri_normal;
+        // TriNormalMatrix.col(n) = tri_normal;
 
         VerNormalMatrix.col(3*n) = tri_normal;
         VerNormalMatrix.col(3*n+1) = tri_normal;
@@ -724,14 +724,14 @@ void ReadCube()
     VBO_N_ver.init();
     VBO_N_ver.update(VerNormalMatrix);
 
-    VertexBufferObject VBO_N_tri;
-    VBO_N_tri.init();
-    VBO_N_tri.update(TriNormalMatrix);
+    // VertexBufferObject VBO_N_tri;
+    // VBO_N_tri.init();
+    // VBO_N_tri.update(TriNormalMatrix);
 
     vec_VBO_V.push_back(VBO_V);
     vec_VBO_C.push_back(VBO_C);
     vec_VBO_N_ver.push_back(VBO_N_ver);
-    vec_VBO_N_tri.push_back(VBO_N_tri);
+    // vec_VBO_N_tri.push_back(VBO_N_tri);
     vec_Mat_Model.push_back(modelMatrix);
     vec_Mat_Vertex.push_back(V);
 
@@ -846,12 +846,12 @@ void ReadFile()
 
         double canonical_min_z;
         canonical_min_z = (min_z - center_z)/scale_rate;
-        if (m == ImportBcubeMode) {
-            depth_bumpy = canonical_min_z;
-        }
-        else if (m == ImportBunnyMode) {
-            depth_bunny = canonical_min_z;
-        }
+        // if (m == ImportBcubeMode) {
+        //     depth_bumpy = canonical_min_z;
+        // }
+        // else if (m == ImportBunnyMode) {
+        //     depth_bunny = canonical_min_z;
+        // }
 
         for(int i = 0; i < V.rows(); i++) {
             for (int j = 0; j < V.cols(); j++) {
@@ -864,7 +864,7 @@ void ReadFile()
     for (int i = 0; i < C.cols(); i++)
         C.col(i) << 0., 0.01*(i%100), 0.03*(i%100);
 
-    MatrixXf TriNormalMatrix(3, V.cols()/3);
+    // MatrixXf TriNormalMatrix(3, V.cols()/3);
     MatrixXf VerNormalMatrix(3, V.cols());
     for(int n = 0; n < V.cols()/3; n++)
     {
@@ -876,7 +876,7 @@ void ReadFile()
         Vector3f l1 = v2 - v0;
         Vector3f tri_normal = l0.cross(l1).normalized();
 
-        TriNormalMatrix.col(n) = tri_normal;
+        // TriNormalMatrix.col(n) = tri_normal;
 
         VerNormalMatrix.col(3*n) = tri_normal;
         VerNormalMatrix.col(3*n+1) = tri_normal;
@@ -902,14 +902,14 @@ void ReadFile()
     VBO_N_ver.init();
     VBO_N_ver.update(VerNormalMatrix);
 
-    VertexBufferObject VBO_N_tri;
-    VBO_N_tri.init();
-    VBO_N_tri.update(TriNormalMatrix);
+    // VertexBufferObject VBO_N_tri;
+    // VBO_N_tri.init();
+    // VBO_N_tri.update(TriNormalMatrix);
 
     vec_VBO_V.push_back(VBO_V);
     vec_VBO_C.push_back(VBO_C);
     vec_VBO_N_ver.push_back(VBO_N_ver);
-    vec_VBO_N_tri.push_back(VBO_N_tri);
+    // vec_VBO_N_tri.push_back(VBO_N_tri);
     vec_Mat_Model.push_back(modelMatrix);
     vec_Mat_Vertex.push_back(V);
 }
@@ -1018,6 +1018,11 @@ bool loadOBJ()
     std::vector<Vector2d> temp_uvs;
     std::vector<Vector3f> temp_normals;
 
+    MatrixXf V(3,0);
+    MatrixXf UV(2,0);
+    MatrixXf N(3,0);
+
+
     FILE * file = fopen("../data/cube.obj", "r");
     if( file == NULL) {
         printf("File cannot be opened.\n");
@@ -1036,7 +1041,7 @@ bool loadOBJ()
         if (strcmp(lineHeader, "v") == 0){
             // cerr << "lineHeader:" << lineHeader << endl;
             Vector3f vertex;
-            cerr << "HERE." << endl;
+            // cerr << "HERE." << endl;
             fscanf(file, "%f %f %f\n", &vertex(0), &vertex(1), &vertex(2));
             temp_vertices.push_back(vertex);
         } else if (strcmp(lineHeader, "vt") == 0){
@@ -1054,6 +1059,7 @@ bool loadOBJ()
                 &vertexIndex[0], &uvIndex[0], &normalIndex[0], 
                 &vertexIndex[1], &uvIndex[1], &normalIndex[1], 
                 &vertexIndex[2], &uvIndex[2], &normalIndex[2] );
+
             if (matches != 9) {
                 printf("File cannot be read correctly.\n");
                 return false;
@@ -1071,120 +1077,122 @@ bool loadOBJ()
         
         // For each vertex of each triangle
         // Fill in the vertex matrix
-        MatrixXf V(3, vertexIndices.size());
+        V.conservativeResize(3, vertexIndices.size());
         for(unsigned int i=0; i<vertexIndices.size(); i++){
             unsigned int vertexIndex = vertexIndices[i];
             Vector3f vertex = temp_vertices[ vertexIndex-1 ];
             V.col(i) << vertex(0), vertex(1), vertex(2);
         }
         // Fill in the uv matrix
-        MatrixXf UV(2, vertexIndices.size());
+        UV.conservativeResize(2, vertexIndices.size());
         for(unsigned int i=0; i<vertexIndices.size(); i++){
             unsigned int uvIndex = uvIndices[i];
             Vector2d uv = temp_uvs[ uvIndex-1 ];
             UV.col(i) << uv(0), uv(1);
         }
+
         // Fill in the normal matrix
-        MatrixXf N(3, vertexIndices.size());
+        N.conservativeResize(3, vertexIndices.size());
         for(unsigned int i=0; i<vertexIndices.size(); i++){
             unsigned int normalIndex = normalIndices[i];
             Vector3f normal = temp_normals[ normalIndex-1 ];
             N.col(i) << normal(0), normal(1), normal(2);
         }
+    }
+
+        cerr << "V.cols(): " << V.cols() << endl;
+        cerr << "UV.cols(): " << UV.cols() << endl;
+        cerr << "N.cols(): " << N.cols() << endl;
+
+        double max_x = V(0,0);
+        double min_x = V(0,1);
+        for(int j = 0; j < V.cols(); j++)
+        {
+            if(V(0,j) > max_x) max_x = V(0,j);
+            if(V(0,j) < min_x) min_x = V(0,j);
+        }
+        double len_x = max_x - min_x;
+        double center_x = (max_x + min_x) / 2.;
+
+        // Find y-length of the object
+        double max_y = V(1,0);
+        double min_y = V(1,1);
+        for(int j = 0; j < V.cols(); j++)
+        {
+            if(V(1,j) > max_y) max_y = V(1,j);
+            if(V(1,j) < min_y) min_y = V(1,j);
+        }
+        double len_y = max_y - min_y;
+        double center_y = (max_y + min_y) / 2.;        
+
+        // Find z-length of the object
+        double max_z = V(2,0);
+        double min_z = V(2,1);
+        for(int j = 0; j < V.cols(); j++)
+        {
+            if(V(2,j) > max_z) max_z = V(2,j);
+            if(V(2,j) < min_z) min_z = V(2,j);
+        }
+        double len_z = max_z - min_z; 
+        double center_z = (max_z + min_z) / 2.;
+
+        for(int i = 0; i < V.cols(); i++) {
+            V(0,i) = V(0,i) - center_x;
+            V(1,i) = V(1,i) - center_y;
+            V(2,i) = V(2,i) - center_z;
+        }
+        double scale_rate = len_x;
+        if(len_y > scale_rate) scale_rate = len_y;
+        else if (len_z > scale_rate) scale_rate = len_z;
+
+        double canonical_min_z;
+        canonical_min_z = (min_z - center_z)/scale_rate;
+        // if (m == ImportBcubeMode) {
+        //     depth_bumpy = canonical_min_z;
+        // }
+        // else if (m == ImportBunnyMode) {
+        //     depth_bunny = canonical_min_z;
+        // }
+
+        for(int i = 0; i < V.rows(); i++) {
+            for (int j = 0; j < V.cols(); j++) {
+                V(i,j) = V(i,j) / scale_rate;
+            }
+        }        
+
+
+        Matrix4f modelMatrix;
+        modelMatrix <<
+        1, 0, 0, 0,
+        0, 1, 0, 0,
+        0, 0, 1, 0,
+        0, 0, 0, 1;
+
         VertexBufferObject VBO_V;
         VBO_V.init();
         VBO_V.update(V);
 
         VertexBufferObject VBO_UV;
-        VBO_V.init();
-        VBO_V.update(UV);
+        VBO_UV.init();
+        VBO_UV.update(UV);
 
         VertexBufferObject VBO_N;
-        VBO_V.init();
-        VBO_V.update(N);
+        VBO_N.init();
+        VBO_N.update(N);
 
         MatrixXf C(3, V.cols());
         for (int i = 0; i < C.cols(); i++)
-            C.col(i) << 0., 0.01*(i%100), 0.03*(i%100);
+            C.col(i) << 0., 0., 0.;
 
         VertexBufferObject VBO_C;
-        VBO_V.init();
-        VBO_V.update(C);
+        VBO_C.init();
+        VBO_C.update(C);
 
         vec_VBO_V.push_back(VBO_V);
         vec_VBO_UV.push_back(VBO_UV);
-        vec_VBO_N.push_back(VBO_N);
+        vec_VBO_N_ver.push_back(VBO_N);
         vec_VBO_C.push_back(VBO_C);
 
-    }
-}
-
-bool loadOBJCube()
-{
-    std::vector<unsigned int> vertexIndices, uvIndices, normalIndices;
-    std::vector<Vector3f> temp_vertices;
-    std::vector<Vector2d> temp_uvs;
-    std::vector<Vector3f> temp_normals;
-
-    char Buffer[1024];
-    FILE * pFile;
-    
-    pFile = fopen("../data/cube.obj", "r");
-
-    if(pFile == NULL)
-    {
-        cout << "The file cannot be opened." << endl;
-        return false;
-    }
-
-    else
-    {
-        while(1){
-            fgets(Buffer, sizeof(Buffer), pFile);
-
-            if(Buffer == "EOF") 
-                break;
-            
-            if (Buffer[0] == 'v')
-            {
-                Vector3f vertex;
-                fscanf(pFile, "%f %f %f\n", &vertex(0), &vertex(1), &vertex(2));
-                temp_vertices.push_back(vertex);
-            } else if (Buffer[0] == 'vt'){
-                Vector2d uv;
-                fscanf(pFile, "%f %f\n", &uv(0), &uv(1));
-                temp_uvs.push_back(uv);
-                cerr << "temp_uvs size: " << temp_uvs.size() << endl;
-            } else if (Buffer[0] == 'vn'){
-                Vector3f normal;
-                fscanf(pFile, "%f %f %f\n", &normal(0), &normal(1), &normal(2));
-                temp_normals.push_back(normal);
-                cerr << "temp_normals size: " << temp_normals.size() << endl;
-            // } else if (strstr(Buffer, "f ")){   
-            } else if (Buffer[0] == 'f'){
-                cerr << "reading f" << endl;
-                std::string vertex1, vertex2, vertex3;
-                unsigned int vertexIndex[3], uvIndex[3], normalIndex[3];
-                int matches = fscanf(pFile, "%d/%d/%d %d/%d/%d %d/%d/%d\n", 
-                    &vertexIndex[0], &uvIndex[0], &normalIndex[0], 
-                    &vertexIndex[1], &uvIndex[1], &normalIndex[1], 
-                    &vertexIndex[2], &uvIndex[2], &normalIndex[2] );
-                if (matches != 9) {
-                    printf("File cannot be read correctly.\n");
-                    return false;
-                }
-                vertexIndices.push_back(vertexIndex[0]);
-                vertexIndices.push_back(vertexIndex[1]);
-                vertexIndices.push_back(vertexIndex[2]);
-                uvIndices    .push_back(uvIndex[0]);
-                uvIndices    .push_back(uvIndex[1]);
-                uvIndices    .push_back(uvIndex[2]);
-                normalIndices.push_back(normalIndex[0]);
-                normalIndices.push_back(normalIndex[1]);
-                normalIndices.push_back(normalIndex[2]);
-
-                cerr << "normalIndices: " << normalIndices.size() << endl;
-            }
-        }
-    }
+        vec_Mat_Model.push_back(modelMatrix);
+        vec_Mat_Vertex.push_back(V);
 }
