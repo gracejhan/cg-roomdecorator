@@ -388,31 +388,45 @@ int main(void)
     const GLchar* vertex_shader =
             "#version 150 core\n"
                     "in vec3 position;"
-                    "in vec3 normal;"
+                    "in vec3 a_normal;"
                     "in vec3 color;"
+                    "in vec2 a_uv;"
                     "uniform vec3 colorchange;"
                     "uniform mat4 final;"
                     "uniform vec3 camera;"    
                     "uniform vec3 light;"               
                     "out vec3 f_color;"
+                    "out vec2 uv;"      // uv coordinates to fragment shader
+                    "out vec4 v_pos;"       // vertex positions
+                    "out vec4 N;"       // vertex normals
                     "out float L;"
                     "void main()"
                     "{"
-                    "    gl_Position = final * vec4(position, 1.0);"
+                    "    v_pos = final * vec4(position, 1.0);"
                     "    vec3 v = camera - position;"
                     "    vec3 l = light - position;"
                     "    vec3 h = normalize(v + l);"
-                    "    L = 0.25 + 0.5 * max(0.0, dot(normal, l)) + 0.8 * pow(max(0.0, dot(normal, h)), 10);"
+                    "    L = 0.25 + 0.5 * max(0.0, dot(a_normal, l)) + 0.8 * pow(max(0.0, dot(a_normal, h)), 10);"
                     "    f_color = color + colorchange;"
+                    "    N = normalize(final * vec4(a_normal, 0.0));"
+                    "    gl_Position = v_pos;"
+                    "    uv = a_uv;"
                     "}";
     const GLchar* fragment_shader =
             "#version 150 core\n"
+                    "in vec2 uv;"
+                    "in vec4 v_pos;"
+                    "in vec4 N;"
                     "in vec3 f_color;"
                     "out vec4 outColor;"
                     "in float L;"
                     "void main()"
                     "{"
-                    "    outColor = L * vec4(f_color, 1.0);"
+                    // "    outColor = L * vec4(f_color, 1.0);"
+                    "    if(uv.x > 0.4)"
+                    "       outColor = vec4(1.0, 0.0, 0.0, 1.0);"
+                    "    else"
+                    "       outColor = vec4(0.0, 0.0, 1.0, 0.0);"
                     "}";
 
     // Compile the two shaders and upload the binary to the GPU
@@ -469,7 +483,7 @@ int main(void)
         float r_ = 3;
         float b_ = -3;
         float t_ = 3;
-        float n_ = 3;
+        float n_ = 6;
         float f_ = -6;
 
         M_orth <<
@@ -511,7 +525,8 @@ int main(void)
         {   
             program.bindVertexAttribArray("position",vec_VBO_V[i]);
             program.bindVertexAttribArray("color", vec_VBO_C[i]);
-            program.bindVertexAttribArray("normal", vec_VBO_N_ver[i]);
+            program.bindVertexAttribArray("a_normal", vec_VBO_N_ver[i]);
+            program.bindVertexAttribArray("a_uv", vec_VBO_UV[i]);
             Matrix4f modelMatrix = vec_Mat_Model[i];
             final = M_orth * Pmatrix * M_cam * M_aspect * modelMatrix;
             glUniformMatrix4fv(program.uniform("final"), 1, GL_FALSE, final.data());
@@ -1015,7 +1030,7 @@ bool loadOBJ()
 {
     std::vector<unsigned int> vertexIndices, uvIndices, normalIndices;
     std::vector<Vector3f> temp_vertices;
-    std::vector<Vector2d> temp_uvs;
+    std::vector<Vector2f> temp_uvs;
     std::vector<Vector3f> temp_normals;
 
     MatrixXf V(3,0);
@@ -1043,14 +1058,26 @@ bool loadOBJ()
             Vector3f vertex;
             // cerr << "HERE." << endl;
             fscanf(file, "%f %f %f\n", &vertex(0), &vertex(1), &vertex(2));
+            cerr << vertex(0) << endl;
+            cerr << vertex(1) << endl;
+            cerr << vertex(2) << endl;
+            cerr << " " << endl;
             temp_vertices.push_back(vertex);
         } else if (strcmp(lineHeader, "vt") == 0){
-            Vector2d uv;
+            // cerr << "lineHeader: " << lineHeader << endl;
+            Vector2f uv;
             fscanf(file, "%f %f\n", &uv(0), &uv(1));
+            cerr << uv(0) << endl;
+            cerr << uv(1) << endl;
+            cerr << " "  << endl;
             temp_uvs.push_back(uv);
         } else if (strcmp(lineHeader, "vn") == 0){
             Vector3f normal;
             fscanf(file, "%f %f %f\n", &normal(0), &normal(1), &normal(2));
+            cerr << normal(0) << endl;
+            cerr << normal(1) << endl;
+            cerr << normal(2) << endl;
+            cerr << " " << endl;
             temp_normals.push_back(normal);
         } else if (strcmp(lineHeader, "f") == 0){
             std::string vertex1, vertex2, vertex3;
@@ -1087,7 +1114,7 @@ bool loadOBJ()
         UV.conservativeResize(2, vertexIndices.size());
         for(unsigned int i=0; i<vertexIndices.size(); i++){
             unsigned int uvIndex = uvIndices[i];
-            Vector2d uv = temp_uvs[ uvIndex-1 ];
+            Vector2f uv = temp_uvs[ uvIndex-1 ];
             UV.col(i) << uv(0), uv(1);
         }
 
@@ -1159,6 +1186,11 @@ bool loadOBJ()
                 V(i,j) = V(i,j) / scale_rate;
             }
         }        
+
+        // for(int k = 0; k < UV.cols(); k++) {
+        //     cerr <<UV.col(k) << endl;
+        //     cerr << " " << endl;
+        // }
 
 
         Matrix4f modelMatrix;
