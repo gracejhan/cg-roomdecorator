@@ -45,3 +45,5 @@ file(GLOB SOURCES
 
 add_executable(${PROJECT_NAME}_bin ${SOURCES})
 target_link_libraries(${PROJECT_NAME}_bin ${LIBRARIES})
+
+

@@ -4,7 +4,7 @@
 // Email: jh5990@nyu.edu
 // Student ID: N17456718
 
-
+#define STB_IMAGE_IMPLEMENTATION
 // OpenGL Helpers to reduce the clutter
 #include "Helpers.h"
 #include <stdio.h>
@@ -21,9 +21,11 @@
 #include <sstream>
 #include <Eigen/Dense>
 
-
 // Timer
 #include <chrono>
+
+// Import image
+#include "stb_image.h"
 
 // Fix size and value
 #define SCREEN_WIDTH 960
@@ -99,7 +101,6 @@ Modes m;
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
 void cursor_pos_callback(GLFWwindow* window, double xpos, double ypos);
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
-void ReadCube();
 void ReadFile();
 int inside_triangle(MatrixXf V, int i, Vector2d P);
 int triangle_under_cursor(MatrixXf V, Vector2d P);
@@ -177,15 +178,6 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
     // Update the position of the first vertex if the keys 1,2, or 3 are pressed
     switch (key)
     {
-        case  GLFW_KEY_1:
-            if (action == GLFW_PRESS)
-            {
-                m = DrawCubeMode;
-                obj_count += 1;
-                ReadCube();
-                // vec_obj_depth.push_back(depth_cube);
-            }
-            break;
         case GLFW_KEY_2:
             if (action == GLFW_PRESS)
             {
@@ -377,10 +369,38 @@ int main(void)
     VAO.init();
     VAO.bind();
 
+    // GLuint textures[2];
+    // glGenTextures(2, textures);
+
+    // glActiveTexture(GL_TEXTURE0);
+    // glBindTexture(GL_TEXTURE_2D, textures[0]);
+
+    // Load texture
     GLuint tex;
     glGenTextures(1, &tex);
     glBindTexture(GL_TEXTURE_2D, tex);
 
+    // Import png image
+    int texture_width, texture_height, bpp;
+    unsigned char * rgb_array = stbi_load("../data/box.png", &texture_width, &texture_height, &bpp, 3);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texture_width, texture_height, 0, GL_RGB, GL_UNSIGNED_BYTE, rgb_array);
+    stbi_image_free(rgb_array);
+
+    if(rgb_array == nullptr)
+        printf("Cannot load texture image.\n");
+
+    // float rgb_array[] = {
+    //     1.0f, 0.0f, 0.0f,   1.0f, 1.0f, 1.0f,
+    //     1.0f, 1.0f, 1.0f,   1.0f, 0.0f, 0.0f
+    // };
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+
+    
     // Initialize the OpenGL Program
     // A program controls the OpenGL pipeline and it must contains
     // at least a vertex shader and a fragment shader to be valid
@@ -391,10 +411,13 @@ int main(void)
                     "in vec3 a_normal;"
                     "in vec3 color;"
                     "in vec2 a_uv;"
+
                     "uniform vec3 colorchange;"
                     "uniform mat4 final;"
                     "uniform vec3 camera;"    
-                    "uniform vec3 light;"               
+                    "uniform vec3 light;"
+                    "uniform sampler2D my_texture;"
+
                     "out vec3 f_color;"
                     "out vec2 uv;"      // uv coordinates to fragment shader
                     "out vec4 v_pos;"       // vertex positions
@@ -418,15 +441,16 @@ int main(void)
                     "in vec4 v_pos;"
                     "in vec4 N;"
                     "in vec3 f_color;"
-                    "out vec4 outColor;"
                     "in float L;"
+
+                    "out vec4 outColor;"
+
+                    "uniform sampler2D my_texture;"               
                     "void main()"
                     "{"
                     // "    outColor = L * vec4(f_color, 1.0);"
-                    "    if(uv.x > 0.4)"
-                    "       outColor = vec4(1.0, 0.0, 0.0, 1.0);"
-                    "    else"
-                    "       outColor = vec4(0.0, 0.0, 1.0, 0.0);"
+                    "       outColor = texture(my_texture, uv) * L * vec4(f_color, 1.0);"
+                    // "       outColor = L * outColor;"
                     "}";
 
     // Compile the two shaders and upload the binary to the GPU
@@ -445,7 +469,8 @@ int main(void)
     glfwSetCursorPosCallback(window, cursor_pos_callback);
 
 
-    glEnable(GL_DEPTH_TEST);     
+    glEnable(GL_DEPTH_TEST);   
+    glDepthFunc(GL_LESS);  
 
     // Loop until the user closes the window
     while (!glfwWindowShouldClose(window))
@@ -532,6 +557,9 @@ int main(void)
             glUniformMatrix4fv(program.uniform("final"), 1, GL_FALSE, final.data());
             glUniform3fv(program.uniform("camera"), 1, eye.data());
             glUniform3fv(program.uniform("light"), 1, light.data());
+            // glUniform1i(glGetUniformLocation(program, "my_texture"), 0);
+            // glUniform1i(program.uniform("my_texture"), textures[i]);
+            glUniform1i(program.uniform("my_texture"), tex);
 
             for(int j = 0; j < vec_Mat_Vertex[i].cols()/3; j++)
             {
@@ -563,194 +591,11 @@ int main(void)
         vec_VBO_C[i].free();
     }
 
+    glDeleteTextures(1, &tex);
+
     // Deallocate glfw internals
     glfwTerminate();
     return 0;
-}
-
-void ReadCube()
-{
-    MatrixXf V;
-    MatrixXf C;
-
-    V.conservativeResize(3,36);
-    // front face
-
-    V.col(0) <<  -0.5, 0.5, 0.5;
-    V.col(1) <<  0.5, 0.5, 0.5;
-    V.col(2) <<  -0.5, -0.5, 0.5;
-
-    V.col(3) <<  0.5, 0.5, 0.5;
-    V.col(4) <<  0.5, -0.5, 0.5;
-    V.col(5) <<  -0.5, -0.5, 0.5;
-        
-    // back face
-    V.col(6) <<  -0.5, 0.5, -0.5;
-    V.col(7) <<  0.5, 0.5, -0.5;
-    V.col(8) <<  -0.5, -0.5, -0.5;
-
-    V.col(9) <<  0.5, 0.5, -0.5;
-    V.col(10) <<  0.5, -0.5, -0.5;
-    V.col(11) <<  -0.5, -0.5, -0.5;
-        
-        
-    // left face
-    V.col(12) << -0.5, 0.5, 0.5;
-    V.col(13) << -0.5, 0.5, -0.5;
-    V.col(14) << -0.5, -0.5, 0.5;
-
-    V.col(15) << -0.5, 0.5, -0.5;
-    V.col(16) << -0.5, -0.5, -0.5;
-    V.col(17) << -0.5, -0.5, 0.5;
-        
-        
-    // right face
-    V.col(18) << 0.5, 0.5, 0.5;
-    V.col(19) << 0.5, 0.5, -0.5;
-    V.col(20) << 0.5, -0.5, 0.5;
-
-    V.col(21) << 0.5, 0.5, -0.5;
-    V.col(22) << 0.5, -0.5, -0.5;
-    V.col(23) << 0.5, -0.5, 0.5;
-        
-        
-    // top face
-    V.col(24) << -0.5, 0.5, -0.5;
-    V.col(25) << 0.5, 0.5, -0.5;
-    V.col(26) << -0.5, 0.5, 0.5;
-
-    V.col(27) << 0.5, 0.5, -0.5;
-    V.col(28) << 0.5, 0.5, 0.5;
-    V.col(29) << -0.5, 0.5, 0.5;
-        
-        
-    // bottom face
-    V.col(30) << -0.5, -0.5, -0.5;
-    V.col(31) << 0.5, -0.5, -0.5;
-    V.col(32) << -0.5, -0.5, 0.5;
-
-    V.col(33) << 0.5, -0.5, -0.5;
-    V.col(34) << 0.5, -0.5, 0.5;
-    V.col(35) << -0.5, -0.5, 0.5;
-
-    double min_z = V(2,0);
-    for(int j = 0; j < V.cols(); j++)
-    {
-        if(V(2,j) < min_z) min_z = V(2,j);
-    }
-
-    C.conservativeResize(3, V.cols());
-
-    C.col(0) <<  1., 0., 0.;
-    C.col(1) <<  1., 0., 0.;
-    C.col(2) <<  1., 0., 0.;
-
-    C.col(3) <<  1., 0., 0.;
-    C.col(4) <<  1., 0., 0.;
-    C.col(5) <<  1., 0., 0.;
-        
-    // back face
-    C.col(6) <<  1., 0., 0.;
-    C.col(7) <<  1., 0., 0.;
-    C.col(8) <<  1., 0., 0.;
-
-    C.col(9) <<  1., 0., 0.;
-    C.col(10) <<  1., 0., 0.;
-    C.col(11) <<  1., 0., 0.;
-        
-        
-    // left face
-    C.col(12) << 0., 1., 0.;
-    C.col(13) << 0., 1., 0.;
-    C.col(14) << 0., 1., 0.;
-
-    C.col(15) << 0., 1., 0.;
-    C.col(16) << 0., 1., 0.;
-    C.col(17) << 0., 1., 0.;
-        
-        
-    // right face
-    C.col(18) << 0., 0., 1.;
-    C.col(19) << 0., 0., 1.;
-    C.col(20) << 0., 0., 1.;
-
-    C.col(21) << 0., 0., 1.;
-    C.col(22) << 0., 0., 1.;
-    C.col(23) << 0., 0., 1.;
-        
-        
-    // top face
-    C.col(24) << 0.5, 0.5, 0.5;
-    C.col(25) << 0.5, 0.5, 0.5;
-    C.col(26) << 0.5, 0.5, 0.5;
-
-    C.col(27) << 0.5, 0.5, 0.5;
-    C.col(28) << 0.5, 0.5, 0.5;
-    C.col(29) << 0.5, 0.5, 0.5;
-        
-        
-    // bottom face
-    C.col(30) << 0.5, 0.5, 0.;
-    C.col(31) << 0.5, 0.5, 0.;
-    C.col(32) << 0.5, 0.5, 0.;
-
-    C.col(33) << 0.5, 0.5, 0.;
-    C.col(34) << 0.5, 0.5, 0.;
-    C.col(35) << 0.5, 0.5, 0.;
-
-
-    Matrix4f modelMatrix;
-    modelMatrix <<
-    1, 0, 0, 0,
-    0, 1, 0, 0,
-    0, 0, 1, 0,
-    0, 0, 0, 1;
-
-    // MatrixXf TriNormalMatrix(3, V.cols()/3);
-    MatrixXf VerNormalMatrix(3, V.cols());
-    for(int n = 0; n < V.cols()/3; n++)
-    {
-        Vector3f v0 = V.col(3*n);
-        Vector3f v1 = V.col(3*n+1);
-        Vector3f v2 = V.col(3*n+2);
-
-        Vector3f l0 = v1 - v0;
-        Vector3f l1 = v2 - v0;
-
-        Vector3f tri_normal = l0.cross(l1).normalized();
-
-        // TriNormalMatrix.col(n) = tri_normal;
-
-        VerNormalMatrix.col(3*n) = tri_normal;
-        VerNormalMatrix.col(3*n+1) = tri_normal;
-        VerNormalMatrix.col(3*n+2) = tri_normal;
-
-    }
-
-    VertexBufferObject VBO_V;
-    VBO_V.init();
-    VBO_V.update(V);
-
-    VertexBufferObject VBO_C;
-    VBO_C.init();
-    VBO_C.update(C);
-
-    VertexBufferObject VBO_N_ver;
-    VBO_N_ver.init();
-    VBO_N_ver.update(VerNormalMatrix);
-
-    // VertexBufferObject VBO_N_tri;
-    // VBO_N_tri.init();
-    // VBO_N_tri.update(TriNormalMatrix);
-
-    vec_VBO_V.push_back(VBO_V);
-    vec_VBO_C.push_back(VBO_C);
-    vec_VBO_N_ver.push_back(VBO_N_ver);
-    // vec_VBO_N_tri.push_back(VBO_N_tri);
-    vec_Mat_Model.push_back(modelMatrix);
-    vec_Mat_Vertex.push_back(V);
-
-
 }
 
 void ReadFile()
@@ -1058,26 +903,26 @@ bool loadOBJ()
             Vector3f vertex;
             // cerr << "HERE." << endl;
             fscanf(file, "%f %f %f\n", &vertex(0), &vertex(1), &vertex(2));
-            cerr << vertex(0) << endl;
-            cerr << vertex(1) << endl;
-            cerr << vertex(2) << endl;
-            cerr << " " << endl;
+            // cerr << vertex(0) << endl;
+            // cerr << vertex(1) << endl;
+            // cerr << vertex(2) << endl;
+            // cerr << " " << endl;
             temp_vertices.push_back(vertex);
         } else if (strcmp(lineHeader, "vt") == 0){
             // cerr << "lineHeader: " << lineHeader << endl;
             Vector2f uv;
             fscanf(file, "%f %f\n", &uv(0), &uv(1));
-            cerr << uv(0) << endl;
-            cerr << uv(1) << endl;
-            cerr << " "  << endl;
+            // cerr << uv(0) << endl;
+            // cerr << uv(1) << endl;
+            // cerr << " "  << endl;
             temp_uvs.push_back(uv);
         } else if (strcmp(lineHeader, "vn") == 0){
             Vector3f normal;
             fscanf(file, "%f %f %f\n", &normal(0), &normal(1), &normal(2));
-            cerr << normal(0) << endl;
-            cerr << normal(1) << endl;
-            cerr << normal(2) << endl;
-            cerr << " " << endl;
+            // cerr << normal(0) << endl;
+            // cerr << normal(1) << endl;
+            // cerr << normal(2) << endl;
+            // cerr << " " << endl;
             temp_normals.push_back(normal);
         } else if (strcmp(lineHeader, "f") == 0){
             std::string vertex1, vertex2, vertex3;
@@ -1127,9 +972,9 @@ bool loadOBJ()
         }
     }
 
-        cerr << "V.cols(): " << V.cols() << endl;
-        cerr << "UV.cols(): " << UV.cols() << endl;
-        cerr << "N.cols(): " << N.cols() << endl;
+        // cerr << "V.cols(): " << V.cols() << endl;
+        // cerr << "UV.cols(): " << UV.cols() << endl;
+        // cerr << "N.cols(): " << N.cols() << endl;
 
         double max_x = V(0,0);
         double min_x = V(0,1);
