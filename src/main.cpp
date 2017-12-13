@@ -101,7 +101,6 @@ Modes m;
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
 void cursor_pos_callback(GLFWwindow* window, double xpos, double ypos);
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
-void ReadFile();
 int inside_triangle(MatrixXf V, int i, Vector2d P);
 int triangle_under_cursor(MatrixXf V, Vector2d P);
 void TranslateObj(int objID);
@@ -178,24 +177,6 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
     // Update the position of the first vertex if the keys 1,2, or 3 are pressed
     switch (key)
     {
-        case GLFW_KEY_2:
-            if (action == GLFW_PRESS)
-            {
-                m = ImportBcubeMode;
-                obj_count += 1;
-                ReadFile();
-                // vec_obj_depth.push_back(depth_bumpy);
-            }
-            break;
-        case  GLFW_KEY_3:
-            if (action == GLFW_PRESS)
-            {
-                m = ImportBunnyMode;
-                obj_count += 1;
-                ReadFile();
-                // vec_obj_depth.push_back(depth_bunny);
-            }
-            break;
         case  GLFW_KEY_4:
             if (action == GLFW_PRESS)
             {
@@ -382,7 +363,7 @@ int main(void)
 
     // Import png image
     int texture_width, texture_height, bpp;
-    unsigned char * rgb_array = stbi_load("../data/box.png", &texture_width, &texture_height, &bpp, 3);
+    unsigned char * rgb_array = stbi_load("../data/color.png", &texture_width, &texture_height, &bpp, 3);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texture_width, texture_height, 0, GL_RGB, GL_UNSIGNED_BYTE, rgb_array);
     stbi_image_free(rgb_array);
 
@@ -449,7 +430,11 @@ int main(void)
                     "void main()"
                     "{"
                     // "    outColor = L * vec4(f_color, 1.0);"
-                    "       outColor = texture(my_texture, uv) * L * vec4(f_color, 1.0);"
+                    // "    if(uv.x > 0.4)"
+                    // "       outColor = vec4(1.0, 0.0, 0.0, 1.0);"
+                    // "    else"
+                    // "       outColor = vec4(0.0, 0.0, 1.0, 0.0);"
+                    "       outColor = texture(my_texture, uv) * vec4(f_color, 1.0);"
                     // "       outColor = L * outColor;"
                     "}";
 
@@ -563,15 +548,16 @@ int main(void)
 
             for(int j = 0; j < vec_Mat_Vertex[i].cols()/3; j++)
             {
-                if(draw_count%2 == 0)
-                {
-                    glDrawArrays(GL_LINE_LOOP, j*3, 3);
-                }
-                else if(draw_count%2 == 1)
-                {
-                    glDrawArrays(GL_LINE_LOOP, j*3, 3);
-                    glDrawArrays(GL_TRIANGLES, j*3, 3);
-                }
+                glDrawArrays(GL_TRIANGLES, j*3, 3);
+                // if(draw_count%2 == 0)
+                // {
+                //     glDrawArrays(GL_LINE_LOOP, j*3, 3);
+                // }
+                // else if(draw_count%2 == 1)
+                // {
+                //     glDrawArrays(GL_LINE_LOOP, j*3, 3);
+                //     glDrawArrays(GL_TRIANGLES, j*3, 3);
+                // }
             }
         }
         glViewport(0, 0, width, height);
@@ -596,182 +582,6 @@ int main(void)
     // Deallocate glfw internals
     glfwTerminate();
     return 0;
-}
-
-void ReadFile()
-{
-    char Buffer[1024];
-    int node, face, edge;
-    float x, y, z;
-    int tri_id, v1_id, v2_id, v3_id;
-    MatrixXf Nodes(3, 0);
-    MatrixXd Indices(3, 0);
-    FILE * pFile;
-
-    if(m == ImportBcubeMode) {
-        pFile = fopen("../data/bumpy_cube.off", "r");
-    }
-    else if(m == ImportBunnyMode) {
-        pFile = fopen("../data/bunny.off", "r");
-    }
-
-    if(pFile == NULL)
-        cerr << "The file cannot be opened." << endl;
-    else
-    {
-        fgets(Buffer, sizeof(Buffer), pFile);
-        if(strstr(Buffer, "OFF"))
-        {
-            fgets(Buffer, sizeof(Buffer), pFile);
-
-            // Find the number of nodes, faces, edges of the object
-            sscanf(Buffer, "%d %d %d", &node, &face, &edge);  
-        }
-    }
-    
-    // Save vertex data to Nodes
-    Nodes.conservativeResize(3, node);
-    for (int i = 0; i < node; i++) 
-    {
-        fgets(Buffer, sizeof(Buffer), pFile);
-        sscanf(Buffer, "%f %f %f", &x, &y, &z);
-        Nodes.col(i) << x, y, z;
-    }
-
-    // Save vertex index data of each face to Indices
-    Indices.conservativeResize(3, face);
-    for (int j = 0; j < face; j++)
-    {
-        fgets(Buffer, sizeof(Buffer), pFile);
-        sscanf(Buffer, "%d %d %d %d", &tri_id, &v1_id, &v2_id, &v3_id);
-        Indices.col(j) << v1_id, v2_id, v3_id;
-    }
-
-    MatrixXf V(3,0);
-    MatrixXf C(3,0);
-
-    if ((m == ImportBunnyMode) | (m == ImportBcubeMode)) {
-    // Resize V to store vertices of faces(triangles)
-        V.conservativeResize(3, 3*face);
-
-        for(int f = 0; f < face; f++)
-        {
-            for(int i = 0; i< 3; i++)
-            {
-            // Save to each column of V, the xyz coordinates of a vertex
-                V.col(3*f + i) << Nodes(0, Indices(i, f)), Nodes(1, Indices(i, f)), Nodes(2, Indices(i, f));
-            }
-        }
-
-        double max_x = V(0,0);
-        double min_x = V(0,100);
-        for(int j = 0; j < V.cols(); j++)
-        {
-            if(V(0,j) > max_x) max_x = V(0,j);
-            if(V(0,j) < min_x) min_x = V(0,j);
-        }
-        double len_x = max_x - min_x;
-        double center_x = (max_x + min_x) / 2.;
-
-        // Find y-length of the object
-        double max_y = V(1,0);
-        double min_y = V(1,100);
-        for(int j = 0; j < V.cols(); j++)
-        {
-            if(V(1,j) > max_y) max_y = V(1,j);
-            if(V(1,j) < min_y) min_y = V(1,j);
-        }
-        double len_y = max_y - min_y;
-        double center_y = (max_y + min_y) / 2.;        
-
-        // Find z-length of the object
-        double max_z = V(2,0);
-        double min_z = V(2,100);
-        for(int j = 0; j < V.cols(); j++)
-        {
-            if(V(2,j) > max_z) max_z = V(2,j);
-            if(V(2,j) < min_z) min_z = V(2,j);
-        }
-        double len_z = max_z - min_z; 
-        double center_z = (max_z + min_z) / 2.;
-
-        for(int i = 0; i < V.cols(); i++) {
-            V(0,i) = V(0,i) - center_x;
-            V(1,i) = V(1,i) - center_y;
-            V(2,i) = V(2,i) - center_z;
-        }
-        double scale_rate = len_x;
-        if(len_y > scale_rate) scale_rate = len_y;
-        else if (len_z > scale_rate) scale_rate = len_z;
-
-        double canonical_min_z;
-        canonical_min_z = (min_z - center_z)/scale_rate;
-        // if (m == ImportBcubeMode) {
-        //     depth_bumpy = canonical_min_z;
-        // }
-        // else if (m == ImportBunnyMode) {
-        //     depth_bunny = canonical_min_z;
-        // }
-
-        for(int i = 0; i < V.rows(); i++) {
-            for (int j = 0; j < V.cols(); j++) {
-                V(i,j) = V(i,j) / scale_rate;
-            }
-        }
-    }
-
-    C.conservativeResize(3, V.cols());
-    for (int i = 0; i < C.cols(); i++)
-        C.col(i) << 0., 0.01*(i%100), 0.03*(i%100);
-
-    // MatrixXf TriNormalMatrix(3, V.cols()/3);
-    MatrixXf VerNormalMatrix(3, V.cols());
-    for(int n = 0; n < V.cols()/3; n++)
-    {
-        Vector3f v0 = V.col(3*n);
-        Vector3f v1 = V.col(3*n+1);
-        Vector3f v2 = V.col(3*n+2);
-
-        Vector3f l0 = v1 - v0;
-        Vector3f l1 = v2 - v0;
-        Vector3f tri_normal = l0.cross(l1).normalized();
-
-        // TriNormalMatrix.col(n) = tri_normal;
-
-        VerNormalMatrix.col(3*n) = tri_normal;
-        VerNormalMatrix.col(3*n+1) = tri_normal;
-        VerNormalMatrix.col(3*n+2) = tri_normal;
-
-    }
-    Matrix4f modelMatrix;
-    modelMatrix <<
-    1, 0, 0, 0,
-    0, 1, 0, 0,
-    0, 0, 1, 0,
-    0, 0, 0, 1;
-
-    VertexBufferObject VBO_V;
-    VBO_V.init();
-    VBO_V.update(V);
-
-    VertexBufferObject VBO_C;
-    VBO_C.init();
-    VBO_C.update(C);
-
-    VertexBufferObject VBO_N_ver;
-    VBO_N_ver.init();
-    VBO_N_ver.update(VerNormalMatrix);
-
-    // VertexBufferObject VBO_N_tri;
-    // VBO_N_tri.init();
-    // VBO_N_tri.update(TriNormalMatrix);
-
-    vec_VBO_V.push_back(VBO_V);
-    vec_VBO_C.push_back(VBO_C);
-    vec_VBO_N_ver.push_back(VBO_N_ver);
-    // vec_VBO_N_tri.push_back(VBO_N_tri);
-    vec_Mat_Model.push_back(modelMatrix);
-    vec_Mat_Vertex.push_back(V);
 }
 
 int inside_triangle(MatrixXf V, int i, Vector2d P)
