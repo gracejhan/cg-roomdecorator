@@ -28,7 +28,7 @@
 #include "stb_image.h"
 
 // Fix size and value
-#define SCREEN_WIDTH 1200
+#define SCREEN_WIDTH 1400
 #define SCREEN_HEIGHT 800
 #define PI 3.141582
 
@@ -94,7 +94,7 @@ int selected_obj_id;
 int draw_count = 0;
 
 // Different modes to draw multiple objects
-enum Modes {roomfloor, object1, object2, DrawCubeMode, ImportBcubeMode, ImportBunnyMode};
+enum Modes {roomfloor, roomwall, object1, object2, DrawCubeMode, ImportBcubeMode, ImportBunnyMode};
 // enum Modes {object1, object2, DrawCubeMode, ImportBcubeMode, ImportBunnyMode};
 Modes m;
 
@@ -107,7 +107,8 @@ void TranslateObj(int objID);
 void InitTransInputs();
 void DeleteObj(int objID);
 bool loadOBJ();
-bool loadFloor();
+void loadFloor();
+void loadWall();
 
 
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
@@ -179,11 +180,21 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
             if (action == GLFW_PRESS)
             {
                 m = roomfloor;
-                cerr << "key 0 start" << endl;
+                cerr << "key Floor start" << endl;
                 loadFloor();
-                cerr << "key 0 end" << endl;
+                cerr << "key Floor end" << endl;
             }
             break;
+        case  GLFW_KEY_X:
+            if (action == GLFW_PRESS)
+            {
+                m = roomwall;
+                cerr << "key Wall start" << endl;
+                loadWall();
+                cerr << "key Wall end" << endl;
+            }
+            break;
+
         case  GLFW_KEY_1:
             if (action == GLFW_PRESS)
             {
@@ -399,16 +410,16 @@ int main(void)
 // **************************************************************************************************
     // Load multiple texture
 
-    GLuint textures[3];
-    glGenTextures(3, textures);
+    GLuint textures[4];
+    glGenTextures(4, textures);
 
     int texture_width, texture_height, bpp;
     unsigned char * rgb_array;        
 
-    // Texture 0
+    // Texture 0 : Floor
     glActiveTexture(GL_TEXTURE0);   
     glBindTexture(GL_TEXTURE_2D, textures[0]);
-    rgb_array = stbi_load("../data/color.png", &texture_width, &texture_height, &bpp, 3);
+    rgb_array = stbi_load("../data/rug.png", &texture_width, &texture_height, &bpp, 3);
     if(rgb_array == nullptr)
         printf("Cannot load texture image.\n");
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texture_width, texture_height, 0, GL_RGB, GL_UNSIGNED_BYTE, rgb_array);
@@ -419,10 +430,10 @@ int main(void)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 
-    // Texture 1
+    // Texture 1 : Wall
     glActiveTexture(GL_TEXTURE1);   
     glBindTexture(GL_TEXTURE_2D, textures[1]);
-    rgb_array = stbi_load("../data/cube2.png", &texture_width, &texture_height, &bpp, 3);
+    rgb_array = stbi_load("../data/color.png", &texture_width, &texture_height, &bpp, 3);
     if(rgb_array == nullptr)
         printf("Cannot load texture image.\n");
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texture_width, texture_height, 0, GL_RGB, GL_UNSIGNED_BYTE, rgb_array);
@@ -433,7 +444,7 @@ int main(void)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 
-    // Texture 2
+    // Texture 2 : Obj1
     glActiveTexture(GL_TEXTURE2);   
     glBindTexture(GL_TEXTURE_2D, textures[2]);
     rgb_array = stbi_load("../data/box.png", &texture_width, &texture_height, &bpp, 3);
@@ -446,6 +457,21 @@ int main(void)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+    // Texture 3 : Obj2
+    glActiveTexture(GL_TEXTURE3);   
+    glBindTexture(GL_TEXTURE_2D, textures[3]);
+    rgb_array = stbi_load("../data/cube2.png", &texture_width, &texture_height, &bpp, 3);
+    if(rgb_array == nullptr)
+        printf("Cannot load texture image.\n");
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texture_width, texture_height, 0, GL_RGB, GL_UNSIGNED_BYTE, rgb_array);
+    stbi_image_free(rgb_array);
+    
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
 
 
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
@@ -569,7 +595,7 @@ int main(void)
         0,            0,            2./(n_ - f_), -(float)(n_ + f_)/(n_ - f_),
         0,            0,            0,            1;
 
-        eye = Vector3f(1.,0.4, -2.);
+        eye = Vector3f(1.2,0.6, -2.);
         eye = eye + move_eye;
         gaze = (eye - origin).normalized();
         up = Vector3f(0., 1., 0.);
@@ -949,12 +975,12 @@ bool loadOBJ()
         vec_Mat_Vertex.push_back(V);
 
         if (m == object1)
-            objIDs.push_back(1);
-        else if (m == object2) 
             objIDs.push_back(2);
+        else if (m == object2) 
+            objIDs.push_back(3);
 }
 
-bool loadFloor()
+void loadFloor()
 {
     MatrixXf V(3,6);
     MatrixXf UV(2,6);
@@ -1017,4 +1043,92 @@ bool loadFloor()
     vec_Mat_Vertex.push_back(V);
 
     objIDs.push_back(0);
+}
+
+void loadWall()
+{
+    MatrixXf V(3,12);
+    MatrixXf UV(2,12);
+    MatrixXf N(3,12);
+
+    V.col(0) << -3., 2., -3.;
+    V.col(1) << -3., -1., -3.;
+    V.col(2) << -3., -1., 3.;
+    V.col(3) << -3., 2., -3.;
+    V.col(4) << -3., -1., 3.;
+    V.col(5) << -3., 2., 3.;
+
+    V.col(6) << -3., 2., 3.;
+    V.col(7) << -3., -1., 3.;
+    V.col(8) << 3., -1., 3.;
+    V.col(9) << -3., 2., 3.;
+    V.col(10) << 3., -1., 3.;
+    V.col(11) << 3., 2., 3.;
+
+
+    N.col(0) << 1., 0., 0.;
+    N.col(1) << 1., 0., 0.;
+    N.col(2) << 1., 0., 0.;
+    N.col(3) << 1., 0., 0.;
+    N.col(4) << 1., 0., 0.;
+    N.col(5) << 1., 0., 0.;
+
+    N.col(6) << 0., 0., -1.;
+    N.col(7) << 0., 0., -1.;
+    N.col(8) << 0., 0., -1.;
+    N.col(9) << 0., 0., -1.;
+    N.col(10) << 0., 0., -1.;
+    N.col(11) << 0., 0., -1.;
+
+    UV.col(0) << 0., 1.;
+    UV.col(1) << 0., 0.;
+    UV.col(2) << 1., 0.;
+    UV.col(3) << 0., 1.;
+    UV.col(4) << 1., 0.;
+    UV.col(5) << 1., 1.;
+
+    UV.col(6) << 0., 1.;
+    UV.col(7) << 0., 0.;
+    UV.col(8) << 1., 0.;
+    UV.col(9) << 0., 1.;
+    UV.col(10) << 1., 0.;
+    UV.col(11) << 1., 1.;
+
+
+    Matrix4f modelMatrix;
+    modelMatrix <<
+    1, 0, 0, 0,
+    0, 1, 0, 0,
+    0, 0, 1, 0,
+    0, 0, 0, 1;
+
+    VertexBufferObject VBO_V;
+    VBO_V.init();
+    VBO_V.update(V);
+
+    VertexBufferObject VBO_UV;
+    VBO_UV.init();
+    VBO_UV.update(UV);
+
+    VertexBufferObject VBO_N;
+    VBO_N.init();
+    VBO_N.update(N);
+
+    MatrixXf C(3, V.cols());
+    for (int i = 0; i < C.cols(); i++)
+        C.col(i) << 0., 0., 0.;
+
+    VertexBufferObject VBO_C;
+    VBO_C.init();
+    VBO_C.update(C);
+
+    vec_VBO_V.push_back(VBO_V);
+    vec_VBO_UV.push_back(VBO_UV);
+    vec_VBO_N_ver.push_back(VBO_N);
+    vec_VBO_C.push_back(VBO_C);
+
+    vec_Mat_Model.push_back(modelMatrix);
+    vec_Mat_Vertex.push_back(V);
+
+    objIDs.push_back(1);
 }
