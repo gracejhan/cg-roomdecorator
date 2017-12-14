@@ -382,8 +382,8 @@ int main(void)
     //     1.0f, 1.0f, 1.0f,   1.0f, 0.0f, 0.0f
     // };
 
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 
@@ -400,15 +400,13 @@ int main(void)
                     "in vec3 color;"
                     "in vec2 a_uv;"
 
-                    "uniform vec3 colorchange;"
                     "uniform mat4 final;"
                     "uniform vec3 camera;"    
                     "uniform vec3 light;"
-                    "uniform sampler2D my_texture;"
 
                     "out vec3 f_color;"
                     "out vec2 uv;"      // uv coordinates to fragment shader
-                    "out vec4 v_pos;"       // vertex positions
+                    "out vec4 v_pos;"   // vertex positions
                     "out vec4 N;"       // vertex normals
                     "out float L;"
                     "void main()"
@@ -418,7 +416,7 @@ int main(void)
                     "    vec3 l = light - position;"
                     "    vec3 h = normalize(v + l);"
                     "    L = 0.25 + 0.5 * max(0.0, dot(a_normal, l)) + 0.8 * pow(max(0.0, dot(a_normal, h)), 10);"
-                    "    f_color = color + colorchange;"
+                    "    f_color = color;"
                     "    N = normalize(final * vec4(a_normal, 0.0));"
                     "    gl_Position = v_pos;"
                     "    uv = a_uv;"
@@ -441,7 +439,7 @@ int main(void)
                     // "       outColor = vec4(1.0, 0.0, 0.0, 1.0);"
                     // "    else"
                     // "       outColor = vec4(0.0, 0.0, 1.0, 0.0);"
-                    "       outColor = texture(my_texture, vec2(v_pos.x, v_pos.y)) + vec4(0,0.5,0,1);"
+                    "       outColor = texture(my_texture, uv);"
                     // "       outColor = L * outColor;"
                     "}";
 
@@ -552,7 +550,7 @@ int main(void)
             glUniform3fv(program.uniform("light"), 1, light.data());
             // glUniform1i(glGetUniformLocation(program, "my_texture"), 0);
             // glUniform1i(program.uniform("my_texture"), textures[i]);
-            glUniform1i(program.uniform("my_texture"), tex);
+            glUniform1i(program.uniform("my_texture"), 0);
 
             for(int j = 0; j < vec_Mat_Vertex[i].cols()/3; j++)
             {
