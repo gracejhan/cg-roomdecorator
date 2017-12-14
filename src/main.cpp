@@ -353,7 +353,7 @@ int main(void)
     // GLuint textures[2];
     // glGenTextures(2, textures);
 
-    // glActiveTexture(GL_TEXTURE0);
+    glActiveTexture(GL_TEXTURE0);
     // glBindTexture(GL_TEXTURE_2D, textures[0]);
 
     // Load texture
@@ -364,8 +364,15 @@ int main(void)
     // Import png image
     int texture_width, texture_height, bpp;
     unsigned char * rgb_array = stbi_load("../data/color.png", &texture_width, &texture_height, &bpp, 3);
+
+    for (int i = 0; i<100; ++i)
+        cerr << "--" << i << " - " << int(rgb_array[i]) << endl;
+
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texture_width, texture_height, 0, GL_RGB, GL_UNSIGNED_BYTE, rgb_array);
     stbi_image_free(rgb_array);
+
 
     if(rgb_array == nullptr)
         printf("Cannot load texture image.\n");
@@ -434,7 +441,7 @@ int main(void)
                     // "       outColor = vec4(1.0, 0.0, 0.0, 1.0);"
                     // "    else"
                     // "       outColor = vec4(0.0, 0.0, 1.0, 0.0);"
-                    "       outColor = texture(my_texture, uv) * vec4(f_color, 1.0);"
+                    "       outColor = texture(my_texture, vec2(v_pos.x, v_pos.y)) + vec4(0,0.5,0,1);"
                     // "       outColor = L * outColor;"
                     "}";
 
@@ -537,6 +544,7 @@ int main(void)
             program.bindVertexAttribArray("color", vec_VBO_C[i]);
             program.bindVertexAttribArray("a_normal", vec_VBO_N_ver[i]);
             program.bindVertexAttribArray("a_uv", vec_VBO_UV[i]);
+            // cerr << "vec_VBO_UV[i]: " << vec_VBO_UV[i] << endl;
             Matrix4f modelMatrix = vec_Mat_Model[i];
             final = M_orth * Pmatrix * M_cam * M_aspect * modelMatrix;
             glUniformMatrix4fv(program.uniform("final"), 1, GL_FALSE, final.data());
@@ -858,10 +866,15 @@ bool loadOBJ()
         VertexBufferObject VBO_V;
         VBO_V.init();
         VBO_V.update(V);
+        cerr << "V" << endl;
+        cerr << V << endl;
+        cerr << " " << endl;
 
         VertexBufferObject VBO_UV;
         VBO_UV.init();
         VBO_UV.update(UV);
+        cerr << "UV" << endl;
+        cerr << UV << endl;
 
         VertexBufferObject VBO_N;
         VBO_N.init();
