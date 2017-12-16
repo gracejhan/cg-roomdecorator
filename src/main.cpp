@@ -790,7 +790,7 @@ bool loadOBJ()
 
 
     if(m == object1){
-        file = fopen("../data/cube.obj", "r");
+        file = fopen("../data/bartable1.obj", "r");
     } else if(m == object2){
         file = fopen("../data/box_obj.obj", "r");
     }
