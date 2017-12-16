@@ -497,7 +497,7 @@ int main(void)
     // Texture 4 : Obj1
     glActiveTexture(GL_TEXTURE4);   
     glBindTexture(GL_TEXTURE_2D, textures[4]);
-    rgb_array = stbi_load("../data/cube2.png", &texture_width, &texture_height, &bpp, 3);
+    rgb_array = stbi_load("../data/wood_tex.png", &texture_width, &texture_height, &bpp, 3);
     if(rgb_array == nullptr)
         printf("Cannot load texture image.\n");
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texture_width, texture_height, 0, GL_RGB, GL_UNSIGNED_BYTE, rgb_array);
@@ -509,9 +509,9 @@ int main(void)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 
     // Texture 5 : Obj2
-    glActiveTexture(GL_TEXTURE4);   
+    glActiveTexture(GL_TEXTURE5);   
     glBindTexture(GL_TEXTURE_2D, textures[5]);
-    rgb_array = stbi_load("../data/cube2.png", &texture_width, &texture_height, &bpp, 3);
+    rgb_array = stbi_load("../data/wood_tex.png", &texture_width, &texture_height, &bpp, 3);
     if(rgb_array == nullptr)
         printf("Cannot load texture image.\n");
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texture_width, texture_height, 0, GL_RGB, GL_UNSIGNED_BYTE, rgb_array);
@@ -857,7 +857,7 @@ bool loadOBJ()
     if(m == object1){
         file = fopen("../data/bartable1.obj", "r");
     } else if(m == object2){
-        file = fopen("../data/box_obj.obj", "r");
+        file = fopen("../data/chair.obj", "r");
     }
 
     if( file == NULL) {
