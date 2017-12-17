@@ -1,4 +1,4 @@
-The system is: Linux - 4.10.0-40-generic - x86_64
+The system is: Linux - 4.10.0-42-generic - x86_64
 Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
 Compiler: /usr/bin/cc 
 Build flags: 
@@ -28,28 +28,28 @@ The CXX compiler identification is GNU, found in "/home/gracejwh/Documents/nyu/c
 Determining if the C compiler works passed with the following output:
 Change Dir: /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_6066a/fast"
-/usr/bin/make -f CMakeFiles/cmTC_6066a.dir/build.make CMakeFiles/cmTC_6066a.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_e0dc8/fast"
+/usr/bin/make -f CMakeFiles/cmTC_e0dc8.dir/build.make CMakeFiles/cmTC_e0dc8.dir/build
 make[1]: Entering directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_6066a.dir/testCCompiler.c.o
-/usr/bin/cc     -o CMakeFiles/cmTC_6066a.dir/testCCompiler.c.o   -c /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp/testCCompiler.c
-Linking C executable cmTC_6066a
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6066a.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_6066a.dir/testCCompiler.c.o  -o cmTC_6066a -rdynamic 
+Building C object CMakeFiles/cmTC_e0dc8.dir/testCCompiler.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_e0dc8.dir/testCCompiler.c.o   -c /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_e0dc8
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e0dc8.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_e0dc8.dir/testCCompiler.c.o  -o cmTC_e0dc8 -rdynamic 
 make[1]: Leaving directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp'
 
 
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_6b562/fast"
-/usr/bin/make -f CMakeFiles/cmTC_6b562.dir/build.make CMakeFiles/cmTC_6b562.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_5dd40/fast"
+/usr/bin/make -f CMakeFiles/cmTC_5dd40.dir/build.make CMakeFiles/cmTC_5dd40.dir/build
 make[1]: Entering directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_6b562.dir/CMakeCCompilerABI.c.o
-/usr/bin/cc     -o CMakeFiles/cmTC_6b562.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.5/Modules/CMakeCCompilerABI.c
-Linking C executable cmTC_6b562
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6b562.dir/link.txt --verbose=1
-/usr/bin/cc      -v CMakeFiles/cmTC_6b562.dir/CMakeCCompilerABI.c.o  -o cmTC_6b562 -rdynamic  
+Building C object CMakeFiles/cmTC_5dd40.dir/CMakeCCompilerABI.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_5dd40.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.5/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_5dd40
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5dd40.dir/link.txt --verbose=1
+/usr/bin/cc      -v CMakeFiles/cmTC_5dd40.dir/CMakeCCompilerABI.c.o  -o cmTC_5dd40 -rdynamic  
 Using built-in specs.
 COLLECT_GCC=/usr/bin/cc
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
@@ -59,8 +59,8 @@ Thread model: posix
 gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.5) 
 COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_6b562' '-rdynamic' '-mtune=generic' '-march=x86-64'
- /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccKV5l9b.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_6b562 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_6b562.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_5dd40' '-rdynamic' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccQoretI.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_5dd40 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_5dd40.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
 make[1]: Leaving directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp'
 
 
@@ -68,14 +68,14 @@ Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_6b562/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_6b562.dir/build.make CMakeFiles/cmTC_6b562.dir/build]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_5dd40/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_5dd40.dir/build.make CMakeFiles/cmTC_5dd40.dir/build]
   ignore line: [make[1]: Entering directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp']
-  ignore line: [Building C object CMakeFiles/cmTC_6b562.dir/CMakeCCompilerABI.c.o]
-  ignore line: [/usr/bin/cc     -o CMakeFiles/cmTC_6b562.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.5/Modules/CMakeCCompilerABI.c]
-  ignore line: [Linking C executable cmTC_6b562]
-  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6b562.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/cc      -v CMakeFiles/cmTC_6b562.dir/CMakeCCompilerABI.c.o  -o cmTC_6b562 -rdynamic  ]
+  ignore line: [Building C object CMakeFiles/cmTC_5dd40.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/cc     -o CMakeFiles/cmTC_5dd40.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.5/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTC_5dd40]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5dd40.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/cc      -v CMakeFiles/cmTC_5dd40.dir/CMakeCCompilerABI.c.o  -o cmTC_5dd40 -rdynamic  ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/cc]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper]
@@ -85,13 +85,13 @@ Parsed C implicit link information from above output:
   ignore line: [gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.5) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_6b562' '-rdynamic' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccKV5l9b.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_6b562 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_6b562.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_5dd40' '-rdynamic' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccQoretI.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_5dd40 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_5dd40.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o]
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/ccKV5l9b.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccQoretI.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -109,7 +109,7 @@ Parsed C implicit link information from above output:
     arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_6b562] ==> ignore
+    arg [cmTC_5dd40] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o] ==> ignore
@@ -121,7 +121,7 @@ Parsed C implicit link information from above output:
     arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
     arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
     arg [-L/usr/lib/gcc/x86_64-linux-gnu/5/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/5/../../..]
-    arg [CMakeFiles/cmTC_6b562.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [CMakeFiles/cmTC_5dd40.dir/CMakeCCompilerABI.c.o] ==> ignore
     arg [-lgcc] ==> lib [gcc]
     arg [--as-needed] ==> ignore
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -155,14 +155,14 @@ Parsed C implicit link information from above output:
 Detecting C [-std=c11] compiler features compiled with the following output:
 Change Dir: /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_b8104/fast"
-/usr/bin/make -f CMakeFiles/cmTC_b8104.dir/build.make CMakeFiles/cmTC_b8104.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_3a671/fast"
+/usr/bin/make -f CMakeFiles/cmTC_3a671.dir/build.make CMakeFiles/cmTC_3a671.dir/build
 make[1]: Entering directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_b8104.dir/feature_tests.c.o
-/usr/bin/cc    -std=c11 -o CMakeFiles/cmTC_b8104.dir/feature_tests.c.o   -c /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_b8104
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b8104.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_b8104.dir/feature_tests.c.o  -o cmTC_b8104 -rdynamic 
+Building C object CMakeFiles/cmTC_3a671.dir/feature_tests.c.o
+/usr/bin/cc    -std=c11 -o CMakeFiles/cmTC_3a671.dir/feature_tests.c.o   -c /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_3a671
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3a671.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_3a671.dir/feature_tests.c.o  -o cmTC_3a671 -rdynamic 
 make[1]: Leaving directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp'
 
 
@@ -175,14 +175,14 @@ make[1]: Leaving directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejw
 Detecting C [-std=c99] compiler features compiled with the following output:
 Change Dir: /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_cff83/fast"
-/usr/bin/make -f CMakeFiles/cmTC_cff83.dir/build.make CMakeFiles/cmTC_cff83.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_ae575/fast"
+/usr/bin/make -f CMakeFiles/cmTC_ae575.dir/build.make CMakeFiles/cmTC_ae575.dir/build
 make[1]: Entering directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_cff83.dir/feature_tests.c.o
-/usr/bin/cc    -std=c99 -o CMakeFiles/cmTC_cff83.dir/feature_tests.c.o   -c /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_cff83
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cff83.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_cff83.dir/feature_tests.c.o  -o cmTC_cff83 -rdynamic 
+Building C object CMakeFiles/cmTC_ae575.dir/feature_tests.c.o
+/usr/bin/cc    -std=c99 -o CMakeFiles/cmTC_ae575.dir/feature_tests.c.o   -c /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_ae575
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ae575.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_ae575.dir/feature_tests.c.o  -o cmTC_ae575 -rdynamic 
 make[1]: Leaving directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp'
 
 
@@ -195,14 +195,14 @@ make[1]: Leaving directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejw
 Detecting C [-std=c90] compiler features compiled with the following output:
 Change Dir: /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_8c6bc/fast"
-/usr/bin/make -f CMakeFiles/cmTC_8c6bc.dir/build.make CMakeFiles/cmTC_8c6bc.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_4afe5/fast"
+/usr/bin/make -f CMakeFiles/cmTC_4afe5.dir/build.make CMakeFiles/cmTC_4afe5.dir/build
 make[1]: Entering directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_8c6bc.dir/feature_tests.c.o
-/usr/bin/cc    -std=c90 -o CMakeFiles/cmTC_8c6bc.dir/feature_tests.c.o   -c /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_8c6bc
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8c6bc.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_8c6bc.dir/feature_tests.c.o  -o cmTC_8c6bc -rdynamic 
+Building C object CMakeFiles/cmTC_4afe5.dir/feature_tests.c.o
+/usr/bin/cc    -std=c90 -o CMakeFiles/cmTC_4afe5.dir/feature_tests.c.o   -c /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_4afe5
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4afe5.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_4afe5.dir/feature_tests.c.o  -o cmTC_4afe5 -rdynamic 
 make[1]: Leaving directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp'
 
 
@@ -213,28 +213,28 @@ make[1]: Leaving directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejw
 Determining if the CXX compiler works passed with the following output:
 Change Dir: /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_4a675/fast"
-/usr/bin/make -f CMakeFiles/cmTC_4a675.dir/build.make CMakeFiles/cmTC_4a675.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_4146d/fast"
+/usr/bin/make -f CMakeFiles/cmTC_4146d.dir/build.make CMakeFiles/cmTC_4146d.dir/build
 make[1]: Entering directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_4a675.dir/testCXXCompiler.cxx.o
-/usr/bin/c++      -o CMakeFiles/cmTC_4a675.dir/testCXXCompiler.cxx.o -c /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
-Linking CXX executable cmTC_4a675
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4a675.dir/link.txt --verbose=1
-/usr/bin/c++        CMakeFiles/cmTC_4a675.dir/testCXXCompiler.cxx.o  -o cmTC_4a675 -rdynamic 
+Building CXX object CMakeFiles/cmTC_4146d.dir/testCXXCompiler.cxx.o
+/usr/bin/c++      -o CMakeFiles/cmTC_4146d.dir/testCXXCompiler.cxx.o -c /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_4146d
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4146d.dir/link.txt --verbose=1
+/usr/bin/c++        CMakeFiles/cmTC_4146d.dir/testCXXCompiler.cxx.o  -o cmTC_4146d -rdynamic 
 make[1]: Leaving directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp'
 
 
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_98df1/fast"
-/usr/bin/make -f CMakeFiles/cmTC_98df1.dir/build.make CMakeFiles/cmTC_98df1.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_8c7e7/fast"
+/usr/bin/make -f CMakeFiles/cmTC_8c7e7.dir/build.make CMakeFiles/cmTC_8c7e7.dir/build
 make[1]: Entering directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_98df1.dir/CMakeCXXCompilerABI.cpp.o
-/usr/bin/c++      -o CMakeFiles/cmTC_98df1.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.5/Modules/CMakeCXXCompilerABI.cpp
-Linking CXX executable cmTC_98df1
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_98df1.dir/link.txt --verbose=1
-/usr/bin/c++       -v CMakeFiles/cmTC_98df1.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_98df1 -rdynamic  
+Building CXX object CMakeFiles/cmTC_8c7e7.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++      -o CMakeFiles/cmTC_8c7e7.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.5/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTC_8c7e7
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8c7e7.dir/link.txt --verbose=1
+/usr/bin/c++       -v CMakeFiles/cmTC_8c7e7.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_8c7e7 -rdynamic  
 Using built-in specs.
 COLLECT_GCC=/usr/bin/c++
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
@@ -244,8 +244,8 @@ Thread model: posix
 gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.5) 
 COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_98df1' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
- /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccVO8NGq.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_98df1 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_98df1.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_8c7e7' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccK3EvTY.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_8c7e7 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_8c7e7.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
 make[1]: Leaving directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp'
 
 
@@ -253,14 +253,14 @@ Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_98df1/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_98df1.dir/build.make CMakeFiles/cmTC_98df1.dir/build]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_8c7e7/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_8c7e7.dir/build.make CMakeFiles/cmTC_8c7e7.dir/build]
   ignore line: [make[1]: Entering directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp']
-  ignore line: [Building CXX object CMakeFiles/cmTC_98df1.dir/CMakeCXXCompilerABI.cpp.o]
-  ignore line: [/usr/bin/c++      -o CMakeFiles/cmTC_98df1.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.5/Modules/CMakeCXXCompilerABI.cpp]
-  ignore line: [Linking CXX executable cmTC_98df1]
-  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_98df1.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/c++       -v CMakeFiles/cmTC_98df1.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_98df1 -rdynamic  ]
+  ignore line: [Building CXX object CMakeFiles/cmTC_8c7e7.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/bin/c++      -o CMakeFiles/cmTC_8c7e7.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.5/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTC_8c7e7]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8c7e7.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/c++       -v CMakeFiles/cmTC_8c7e7.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_8c7e7 -rdynamic  ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/c++]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper]
@@ -270,13 +270,13 @@ Parsed CXX implicit link information from above output:
   ignore line: [gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.5) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_98df1' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccVO8NGq.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_98df1 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_98df1.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_8c7e7' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccK3EvTY.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_8c7e7 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_8c7e7.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o]
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/ccVO8NGq.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccK3EvTY.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -294,7 +294,7 @@ Parsed CXX implicit link information from above output:
     arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_98df1] ==> ignore
+    arg [cmTC_8c7e7] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o] ==> ignore
@@ -306,7 +306,7 @@ Parsed CXX implicit link information from above output:
     arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
     arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
     arg [-L/usr/lib/gcc/x86_64-linux-gnu/5/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/5/../../..]
-    arg [CMakeFiles/cmTC_98df1.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [CMakeFiles/cmTC_8c7e7.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
     arg [-lstdc++] ==> lib [stdc++]
     arg [-lm] ==> lib [m]
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -338,14 +338,14 @@ Parsed CXX implicit link information from above output:
 Detecting CXX [-std=c++14] compiler features compiled with the following output:
 Change Dir: /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_9a911/fast"
-/usr/bin/make -f CMakeFiles/cmTC_9a911.dir/build.make CMakeFiles/cmTC_9a911.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_3ecc2/fast"
+/usr/bin/make -f CMakeFiles/cmTC_3ecc2.dir/build.make CMakeFiles/cmTC_3ecc2.dir/build
 make[1]: Entering directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_9a911.dir/feature_tests.cxx.o
-/usr/bin/c++     -std=c++14 -o CMakeFiles/cmTC_9a911.dir/feature_tests.cxx.o -c /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_9a911
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9a911.dir/link.txt --verbose=1
-/usr/bin/c++        CMakeFiles/cmTC_9a911.dir/feature_tests.cxx.o  -o cmTC_9a911 -rdynamic 
+Building CXX object CMakeFiles/cmTC_3ecc2.dir/feature_tests.cxx.o
+/usr/bin/c++     -std=c++14 -o CMakeFiles/cmTC_3ecc2.dir/feature_tests.cxx.o -c /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_3ecc2
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3ecc2.dir/link.txt --verbose=1
+/usr/bin/c++        CMakeFiles/cmTC_3ecc2.dir/feature_tests.cxx.o  -o cmTC_3ecc2 -rdynamic 
 make[1]: Leaving directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp'
 
 
@@ -411,14 +411,14 @@ make[1]: Leaving directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejw
 Detecting CXX [-std=c++11] compiler features compiled with the following output:
 Change Dir: /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_2c0ed/fast"
-/usr/bin/make -f CMakeFiles/cmTC_2c0ed.dir/build.make CMakeFiles/cmTC_2c0ed.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_67b0c/fast"
+/usr/bin/make -f CMakeFiles/cmTC_67b0c.dir/build.make CMakeFiles/cmTC_67b0c.dir/build
 make[1]: Entering directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_2c0ed.dir/feature_tests.cxx.o
-/usr/bin/c++     -std=c++11 -o CMakeFiles/cmTC_2c0ed.dir/feature_tests.cxx.o -c /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_2c0ed
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2c0ed.dir/link.txt --verbose=1
-/usr/bin/c++        CMakeFiles/cmTC_2c0ed.dir/feature_tests.cxx.o  -o cmTC_2c0ed -rdynamic 
+Building CXX object CMakeFiles/cmTC_67b0c.dir/feature_tests.cxx.o
+/usr/bin/c++     -std=c++11 -o CMakeFiles/cmTC_67b0c.dir/feature_tests.cxx.o -c /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_67b0c
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_67b0c.dir/link.txt --verbose=1
+/usr/bin/c++        CMakeFiles/cmTC_67b0c.dir/feature_tests.cxx.o  -o cmTC_67b0c -rdynamic 
 make[1]: Leaving directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp'
 
 
@@ -484,14 +484,14 @@ make[1]: Leaving directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejw
 Detecting CXX [-std=c++98] compiler features compiled with the following output:
 Change Dir: /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_b54be/fast"
-/usr/bin/make -f CMakeFiles/cmTC_b54be.dir/build.make CMakeFiles/cmTC_b54be.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_7a13b/fast"
+/usr/bin/make -f CMakeFiles/cmTC_7a13b.dir/build.make CMakeFiles/cmTC_7a13b.dir/build
 make[1]: Entering directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_b54be.dir/feature_tests.cxx.o
-/usr/bin/c++     -std=c++98 -o CMakeFiles/cmTC_b54be.dir/feature_tests.cxx.o -c /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_b54be
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b54be.dir/link.txt --verbose=1
-/usr/bin/c++        CMakeFiles/cmTC_b54be.dir/feature_tests.cxx.o  -o cmTC_b54be -rdynamic 
+Building CXX object CMakeFiles/cmTC_7a13b.dir/feature_tests.cxx.o
+/usr/bin/c++     -std=c++98 -o CMakeFiles/cmTC_7a13b.dir/feature_tests.cxx.o -c /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_7a13b
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7a13b.dir/link.txt --verbose=1
+/usr/bin/c++        CMakeFiles/cmTC_7a13b.dir/feature_tests.cxx.o  -o cmTC_7a13b -rdynamic 
 make[1]: Leaving directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp'
 
 
@@ -555,112 +555,112 @@ make[1]: Leaving directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejw
 Determining if the include file pthread.h exists passed with the following output:
 Change Dir: /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_e24b1/fast"
-/usr/bin/make -f CMakeFiles/cmTC_e24b1.dir/build.make CMakeFiles/cmTC_e24b1.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_b23c9/fast"
+/usr/bin/make -f CMakeFiles/cmTC_b23c9.dir/build.make CMakeFiles/cmTC_b23c9.dir/build
 make[1]: Entering directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_e24b1.dir/CheckIncludeFile.c.o
-/usr/bin/cc     -o CMakeFiles/cmTC_e24b1.dir/CheckIncludeFile.c.o   -c /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
-Linking C executable cmTC_e24b1
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e24b1.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_e24b1.dir/CheckIncludeFile.c.o  -o cmTC_e24b1 -rdynamic 
+Building C object CMakeFiles/cmTC_b23c9.dir/CheckIncludeFile.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_b23c9.dir/CheckIncludeFile.c.o   -c /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_b23c9
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b23c9.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_b23c9.dir/CheckIncludeFile.c.o  -o cmTC_b23c9 -rdynamic 
 make[1]: Leaving directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp'
 
 
 Determining if the function pthread_create exists in the pthread passed with the following output:
 Change Dir: /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_fcbb3/fast"
-/usr/bin/make -f CMakeFiles/cmTC_fcbb3.dir/build.make CMakeFiles/cmTC_fcbb3.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_f0911/fast"
+/usr/bin/make -f CMakeFiles/cmTC_f0911.dir/build.make CMakeFiles/cmTC_f0911.dir/build
 make[1]: Entering directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_fcbb3.dir/CheckFunctionExists.c.o
-/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_fcbb3.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
-Linking C executable cmTC_fcbb3
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fcbb3.dir/link.txt --verbose=1
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_fcbb3.dir/CheckFunctionExists.c.o  -o cmTC_fcbb3 -rdynamic -lpthread 
+Building C object CMakeFiles/cmTC_f0911.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_f0911.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
+Linking C executable cmTC_f0911
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f0911.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_f0911.dir/CheckFunctionExists.c.o  -o cmTC_f0911 -rdynamic -lpthread 
 make[1]: Leaving directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp'
 
 
 Determining if the function XOpenDisplay exists in the /usr/lib/x86_64-linux-gnu/libX11.so;/usr/lib/x86_64-linux-gnu/libXext.so passed with the following output:
 Change Dir: /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_2a076/fast"
-/usr/bin/make -f CMakeFiles/cmTC_2a076.dir/build.make CMakeFiles/cmTC_2a076.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_df1c8/fast"
+/usr/bin/make -f CMakeFiles/cmTC_df1c8.dir/build.make CMakeFiles/cmTC_df1c8.dir/build
 make[1]: Entering directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_2a076.dir/CheckFunctionExists.c.o
-/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=XOpenDisplay   -o CMakeFiles/cmTC_2a076.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
-Linking C executable cmTC_2a076
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2a076.dir/link.txt --verbose=1
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=XOpenDisplay    CMakeFiles/cmTC_2a076.dir/CheckFunctionExists.c.o  -o cmTC_2a076 -rdynamic /usr/lib/x86_64-linux-gnu/libX11.so /usr/lib/x86_64-linux-gnu/libXext.so 
+Building C object CMakeFiles/cmTC_df1c8.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=XOpenDisplay   -o CMakeFiles/cmTC_df1c8.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
+Linking C executable cmTC_df1c8
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_df1c8.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=XOpenDisplay    CMakeFiles/cmTC_df1c8.dir/CheckFunctionExists.c.o  -o cmTC_df1c8 -rdynamic /usr/lib/x86_64-linux-gnu/libX11.so /usr/lib/x86_64-linux-gnu/libXext.so 
 make[1]: Leaving directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp'
 
 
 Determining if the function gethostbyname exists passed with the following output:
 Change Dir: /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_ca637/fast"
-/usr/bin/make -f CMakeFiles/cmTC_ca637.dir/build.make CMakeFiles/cmTC_ca637.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_05401/fast"
+/usr/bin/make -f CMakeFiles/cmTC_05401.dir/build.make CMakeFiles/cmTC_05401.dir/build
 make[1]: Entering directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_ca637.dir/CheckFunctionExists.c.o
-/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=gethostbyname   -o CMakeFiles/cmTC_ca637.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
-Linking C executable cmTC_ca637
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ca637.dir/link.txt --verbose=1
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=gethostbyname    CMakeFiles/cmTC_ca637.dir/CheckFunctionExists.c.o  -o cmTC_ca637 -rdynamic 
+Building C object CMakeFiles/cmTC_05401.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=gethostbyname   -o CMakeFiles/cmTC_05401.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
+Linking C executable cmTC_05401
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_05401.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=gethostbyname    CMakeFiles/cmTC_05401.dir/CheckFunctionExists.c.o  -o cmTC_05401 -rdynamic 
 make[1]: Leaving directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp'
 
 
 Determining if the function connect exists passed with the following output:
 Change Dir: /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_75de4/fast"
-/usr/bin/make -f CMakeFiles/cmTC_75de4.dir/build.make CMakeFiles/cmTC_75de4.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_cfb33/fast"
+/usr/bin/make -f CMakeFiles/cmTC_cfb33.dir/build.make CMakeFiles/cmTC_cfb33.dir/build
 make[1]: Entering directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_75de4.dir/CheckFunctionExists.c.o
-/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=connect   -o CMakeFiles/cmTC_75de4.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
-Linking C executable cmTC_75de4
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_75de4.dir/link.txt --verbose=1
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=connect    CMakeFiles/cmTC_75de4.dir/CheckFunctionExists.c.o  -o cmTC_75de4 -rdynamic 
+Building C object CMakeFiles/cmTC_cfb33.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=connect   -o CMakeFiles/cmTC_cfb33.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
+Linking C executable cmTC_cfb33
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cfb33.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=connect    CMakeFiles/cmTC_cfb33.dir/CheckFunctionExists.c.o  -o cmTC_cfb33 -rdynamic 
 make[1]: Leaving directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp'
 
 
 Determining if the function remove exists passed with the following output:
 Change Dir: /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_66372/fast"
-/usr/bin/make -f CMakeFiles/cmTC_66372.dir/build.make CMakeFiles/cmTC_66372.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_0e7cd/fast"
+/usr/bin/make -f CMakeFiles/cmTC_0e7cd.dir/build.make CMakeFiles/cmTC_0e7cd.dir/build
 make[1]: Entering directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_66372.dir/CheckFunctionExists.c.o
-/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=remove   -o CMakeFiles/cmTC_66372.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
-Linking C executable cmTC_66372
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_66372.dir/link.txt --verbose=1
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=remove    CMakeFiles/cmTC_66372.dir/CheckFunctionExists.c.o  -o cmTC_66372 -rdynamic 
+Building C object CMakeFiles/cmTC_0e7cd.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=remove   -o CMakeFiles/cmTC_0e7cd.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
+Linking C executable cmTC_0e7cd
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0e7cd.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=remove    CMakeFiles/cmTC_0e7cd.dir/CheckFunctionExists.c.o  -o cmTC_0e7cd -rdynamic 
 make[1]: Leaving directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp'
 
 
 Determining if the function shmat exists passed with the following output:
 Change Dir: /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_f2969/fast"
-/usr/bin/make -f CMakeFiles/cmTC_f2969.dir/build.make CMakeFiles/cmTC_f2969.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_62bbc/fast"
+/usr/bin/make -f CMakeFiles/cmTC_62bbc.dir/build.make CMakeFiles/cmTC_62bbc.dir/build
 make[1]: Entering directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_f2969.dir/CheckFunctionExists.c.o
-/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=shmat   -o CMakeFiles/cmTC_f2969.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
-Linking C executable cmTC_f2969
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f2969.dir/link.txt --verbose=1
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=shmat    CMakeFiles/cmTC_f2969.dir/CheckFunctionExists.c.o  -o cmTC_f2969 -rdynamic 
+Building C object CMakeFiles/cmTC_62bbc.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=shmat   -o CMakeFiles/cmTC_62bbc.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
+Linking C executable cmTC_62bbc
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_62bbc.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=shmat    CMakeFiles/cmTC_62bbc.dir/CheckFunctionExists.c.o  -o cmTC_62bbc -rdynamic 
 make[1]: Leaving directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp'
 
 
 Determining if the function IceConnectionNumber exists in the ICE passed with the following output:
 Change Dir: /home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_8c09e/fast"
-/usr/bin/make -f CMakeFiles/cmTC_8c09e.dir/build.make CMakeFiles/cmTC_8c09e.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_c420b/fast"
+/usr/bin/make -f CMakeFiles/cmTC_c420b.dir/build.make CMakeFiles/cmTC_c420b.dir/build
 make[1]: Entering directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_8c09e.dir/CheckFunctionExists.c.o
-/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=IceConnectionNumber   -o CMakeFiles/cmTC_8c09e.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
-Linking C executable cmTC_8c09e
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8c09e.dir/link.txt --verbose=1
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=IceConnectionNumber    CMakeFiles/cmTC_8c09e.dir/CheckFunctionExists.c.o  -o cmTC_8c09e -rdynamic -lICE 
+Building C object CMakeFiles/cmTC_c420b.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=IceConnectionNumber   -o CMakeFiles/cmTC_c420b.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
+Linking C executable cmTC_c420b
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c420b.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=IceConnectionNumber    CMakeFiles/cmTC_c420b.dir/CheckFunctionExists.c.o  -o cmTC_c420b -rdynamic -lICE 
 make[1]: Leaving directory '/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build/CMakeFiles/CMakeTmp'
 
 

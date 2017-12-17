@@ -35,15 +35,11 @@
 using namespace std;
 using namespace Eigen;
 
-// Count the total number of each objects to render
-int obj_count = 0;
-
-// View transformation matrices
+// View transformation matrices and vectors
 Matrix4f view(4,4);
 Matrix4f model(4,4);
 Matrix4f projection(4,4);
 Matrix4f final(4,4);
-// Vector4f u_Translation(0., 0., 0., 0.);
 Vector3f origin(0., 0., 0.);
 Vector3f eye;
 Vector3f gaze;
@@ -56,17 +52,19 @@ Vector3f v;
 typedef std::vector<VertexBufferObject> VBO_vector;
 typedef std::vector<MatrixXf> Matrix_vector;
 
-VBO_vector vec_VBO_V;             // Vector with VBO_V which has V
+VBO_vector vec_VBO_V;            // Vector with VBO_V which has V
 VBO_vector vec_VBO_UV;
-VBO_vector vec_VBO_N;
 VBO_vector vec_VBO_C;
 VBO_vector vec_VBO_N_ver;
-// VBO_vector vec_VBO_N_tri;
 Matrix_vector vec_Mat_Model;    // Vector with modelMatrix matrix
 Matrix_vector vec_Mat_Vertex;   // Vector with V matrix
 
+// Crate a vector of the IDs of the object drawn
 int objID;
 vector<int> objIDs;
+
+// Used for storing selected object ID
+int selected_obj_id;
 
 Matrix4f M_aspect;
 Matrix4f M_vp;
@@ -83,19 +81,15 @@ double Tz = 0;
 // Relocate eye position
 Vector3f move_eye(0., 0., 0.);
 
-// Amount of scaling for objects
+// Amount of scaling and rotating value for objects
 double ScaleRatio = 1.0;
-
 double rot_angle = 0.;
-
-int selected_obj_id;
 
 // Used for changing drawing modes
 int draw_count = 0;
 
 // Different modes to draw multiple objects
 enum Modes {roomfloor1, roomfloor2, roomwall1, roomwall2, object1, object2};
-// enum Modes {object1, object2, DrawCubeMode, ImportBcubeMode, ImportBunnyMode};
 Modes m;
 
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
@@ -182,18 +176,16 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
             if (action == GLFW_PRESS)
             {
                 m = roomfloor1;
-                cerr << "key Floor1 start" << endl;
+                cerr << "Render floor1." << endl;
                 loadFloor1();
-                cerr << "key Floor1 end" << endl;
             }
             break;
         case  GLFW_KEY_A:
             if (action == GLFW_PRESS)
             {
                 m = roomfloor2;
-                cerr << "key Floor2 start" << endl;
+                cerr << "Render floor2" << endl;
                 loadFloor2();
-                cerr << "key Floor2 end" << endl;
             }
             break;
 
@@ -201,52 +193,44 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
             if (action == GLFW_PRESS)
             {
                 m = roomwall1;
-                cerr << "key Wall1 start" << endl;
+                cerr << "Render wall1." << endl;
                 loadWall1();
-                cerr << "key Wall1 end" << endl;
             }
             break;
         case  GLFW_KEY_S:
             if (action == GLFW_PRESS)
             {
                 m = roomwall2;
-                cerr << "key Wall2 start" << endl;
+                cerr << "Render wall2." << endl;
                 loadWall2();
-                cerr << "key Wall2 end" << endl;
             }
             break;
-
-
         case  GLFW_KEY_1:
             if (action == GLFW_PRESS)
             {
                 m = object1;
-                cerr << "key 1 start" << endl;
+                cerr << "Render a table." << endl;
                 loadOBJ();
-                cerr << "key 1 end" << endl;
             }
             break;
         case  GLFW_KEY_2:
             if (action == GLFW_PRESS)
             {
                 m = object2;
-                cerr << "key 2 start" << endl;
+                cerr << "Render a chair." << endl;
                 loadOBJ();
-                cerr << "key 2 end" << endl;
             }
             break;
         case GLFW_KEY_9:
             if (action == GLFW_PRESS) {
-                cout << "Rotate counter clockwise (y-axis)" << endl;
-                rot_angle = 10.;
+                rot_angle = 30.;
                 TranslateObj(selected_obj_id);
                 rot_angle = 0.;
             }
             break;
         case GLFW_KEY_0:
             if (action == GLFW_PRESS) {
-                cout << "Rotate clockwise (y-axis)" << endl;
-                rot_angle = -10.;
+                rot_angle = -30.;
                 TranslateObj(selected_obj_id);
                 rot_angle = 0.;
             }
@@ -254,7 +238,6 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
         case GLFW_KEY_D:
             if (action == GLFW_PRESS){
                 DeleteObj(selected_obj_id);
-                cout << "Delete" << endl;
             }
             break;    
         case GLFW_KEY_J:
@@ -277,11 +260,10 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
                 move_eye(1) += 0.1;
             }
             break;                                
-
         case GLFW_KEY_UP:
             if (action == GLFW_PRESS){
                 InitTransInputs();
-                Tz = 0.1;
+                Tz = 0.2;
                 TranslateObj(selected_obj_id);
                 Tz = 0;
             }
@@ -289,7 +271,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
         case GLFW_KEY_LEFT:
             if (action == GLFW_PRESS){
                 InitTransInputs();
-                Tx = -0.1;
+                Tx = -0.2;
                 TranslateObj(selected_obj_id);
                 Tx = 0;
             }
@@ -297,7 +279,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
         case GLFW_KEY_DOWN:
             if (action == GLFW_PRESS){
                 InitTransInputs();
-                Tz = -0.1;
+                Tz = -0.2;
                 TranslateObj(selected_obj_id);
                 Tz = 0;
             }
@@ -305,7 +287,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
         case GLFW_KEY_RIGHT:
             if (action == GLFW_PRESS){
                 InitTransInputs();
-                Tx = 0.1;
+                Tx = 0.2;
                 TranslateObj(selected_obj_id);
                 Tx = 0;
             }
@@ -400,38 +382,7 @@ int main(void)
     VAO.init();
     VAO.bind();
 
-// **************************************************************************************************
-    // // Load one texture
-    // glActiveTexture(GL_TEXTURE0);    
-    // GLuint tex;
-    // glGenTextures(1, &tex);
-    // glBindTexture(GL_TEXTURE_2D, tex);
-
-    // // Import png image
-    // int texture_width, texture_height, bpp;
-    // unsigned char * rgb_array = stbi_load("../data/color.png", &texture_width, &texture_height, &bpp, 3);
-
-    // // Check RGB data in png file
-    // // for (int i = 0; i<100; ++i)
-    // //     cerr << "--" << i << " - " << int(rgb_array[i]) << endl;
-
-    // glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-
-    // glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texture_width, texture_height, 0, GL_RGB, GL_UNSIGNED_BYTE, rgb_array);
-    // stbi_image_free(rgb_array);
-
-    // if(rgb_array == nullptr)
-    //     printf("Cannot load texture image.\n");
-
-
-    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-
-// **************************************************************************************************
     // Load multiple texture
-
     GLuint textures[6];
     glGenTextures(6, textures);
 
@@ -441,7 +392,7 @@ int main(void)
     // Texture 0 : Floor1
     glActiveTexture(GL_TEXTURE0);   
     glBindTexture(GL_TEXTURE_2D, textures[0]);
-    rgb_array = stbi_load("../data/floor2.png", &texture_width, &texture_height, &bpp, 3);
+    rgb_array = stbi_load("../data/carpet.png", &texture_width, &texture_height, &bpp, 3);
     if(rgb_array == nullptr)
         printf("Cannot load texture image.\n");
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texture_width, texture_height, 0, GL_RGB, GL_UNSIGNED_BYTE, rgb_array);
@@ -469,7 +420,7 @@ int main(void)
     // Texture 2 : Wall1
     glActiveTexture(GL_TEXTURE2);   
     glBindTexture(GL_TEXTURE_2D, textures[2]);
-    rgb_array = stbi_load("../data/wall2.png", &texture_width, &texture_height, &bpp, 3);
+    rgb_array = stbi_load("../data/wall1.png", &texture_width, &texture_height, &bpp, 3);
     if(rgb_array == nullptr)
         printf("Cannot load texture image.\n");
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texture_width, texture_height, 0, GL_RGB, GL_UNSIGNED_BYTE, rgb_array);
@@ -483,7 +434,7 @@ int main(void)
     // Texture 3 : Wall2
     glActiveTexture(GL_TEXTURE3);   
     glBindTexture(GL_TEXTURE_2D, textures[3]);
-    rgb_array = stbi_load("../data/wall1.png", &texture_width, &texture_height, &bpp, 3);
+    rgb_array = stbi_load("../data/wall2.png", &texture_width, &texture_height, &bpp, 3);
     if(rgb_array == nullptr)
         printf("Cannot load texture image.\n");
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texture_width, texture_height, 0, GL_RGB, GL_UNSIGNED_BYTE, rgb_array);
@@ -494,10 +445,10 @@ int main(void)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 
-    // Texture 4 : Obj1
+    // Texture 4 : Obj1 Bartable
     glActiveTexture(GL_TEXTURE4);   
     glBindTexture(GL_TEXTURE_2D, textures[4]);
-    rgb_array = stbi_load("../data/wood_tex.png", &texture_width, &texture_height, &bpp, 3);
+    rgb_array = stbi_load("../data/wood_tex1.png", &texture_width, &texture_height, &bpp, 3);
     if(rgb_array == nullptr)
         printf("Cannot load texture image.\n");
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texture_width, texture_height, 0, GL_RGB, GL_UNSIGNED_BYTE, rgb_array);
@@ -508,10 +459,10 @@ int main(void)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 
-    // Texture 5 : Obj2
+    // Texture 5 : Obj2 Chair
     glActiveTexture(GL_TEXTURE5);   
     glBindTexture(GL_TEXTURE_2D, textures[5]);
-    rgb_array = stbi_load("../data/wood_tex.png", &texture_width, &texture_height, &bpp, 3);
+    rgb_array = stbi_load("../data/wood_tex2.png", &texture_width, &texture_height, &bpp, 3);
     if(rgb_array == nullptr)
         printf("Cannot load texture image.\n");
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texture_width, texture_height, 0, GL_RGB, GL_UNSIGNED_BYTE, rgb_array);
@@ -522,10 +473,7 @@ int main(void)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 
-
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-// **************************************************************************************************
-
     
     // Initialize the OpenGL Program
     // A program controls the OpenGL pipeline and it must contains
@@ -553,7 +501,7 @@ int main(void)
                     "    vec3 v = camera - position;"
                     "    vec3 l = light - position;"
                     "    vec3 h = normalize(v + l);"
-                    "    L = 0.7 + 0.5 * max(0.0, dot(a_normal, l)) + 0.8 * pow(max(0.0, dot(a_normal, h)), 10);"
+                    "    L = 0.7 + 0.1 * max(0.0, dot(a_normal, l)) + 0.8 * pow(max(0.0, dot(a_normal, h)), 10);"
                     "    f_color = color;"
                     "    N = normalize(final * vec4(a_normal, 0.0));"
                     "    gl_Position = v_pos;"
@@ -572,12 +520,7 @@ int main(void)
                     "uniform sampler2D my_texture;"               
                     "void main()"
                     "{"
-                    // "    outColor = L * vec4(f_color, 1.0);"
-                    // "       outColor = texture(my_texture, uv);"
-// **************************************************************************************************
-                    "       outColor = vec4(texture(my_texture, uv.xy).rgb, 1.0);"
-// **************************************************************************************************
-                    // "       outColor = L * outColor;"
+                    "       outColor = L * vec4(texture(my_texture, uv.xy).rgb, 1.0);"
                     "}";
 
     // Compile the two shaders and upload the binary to the GPU
@@ -594,7 +537,6 @@ int main(void)
 
     // Register mouse cursor callback
     glfwSetCursorPosCallback(window, cursor_pos_callback);
-
 
     glEnable(GL_DEPTH_TEST);   
     glDepthFunc(GL_LESS);  
@@ -644,7 +586,8 @@ int main(void)
         0,            0,            2./(n_ - f_), -(float)(n_ + f_)/(n_ - f_),
         0,            0,            0,            1;
 
-        eye = Vector3f(1.1,0.7, -2.);
+        // eye = Vector3f(1.1,0.7, -2.);
+        eye = Vector3f(1.5, 1., -2.);
         eye = eye + move_eye;
         gaze = (eye - origin).normalized();
         up = Vector3f(0., 1., 0.);
@@ -684,44 +627,17 @@ int main(void)
             glUniformMatrix4fv(program.uniform("final"), 1, GL_FALSE, final.data());
             glUniform3fv(program.uniform("camera"), 1, eye.data());
             glUniform3fv(program.uniform("light"), 1, light.data());
-            // glUniform1i(glGetUniformLocation(program, "my_texture"), 0);
-            // glUniform1i(program.uniform("my_texture"), textures[i]);
-            // glUniform1i(program.uniform("my_texture"), i);
 
             for(int j = 0; j < vec_Mat_Vertex[i].cols()/3; j++)
             {
-// **************************************************************************************************
-                // int texture_num;
-                // // texture_num = objIDs[i] + 2;
-                // if (m == roomfloor1) {
-                //     texture_num = objIDs[i];
-                // } else if (m == roomfloor2) {
-                //     texture_num = objIDs[i] + 1;
-                // } else if (m == roomwall1) {
-                //     texture_num = objIDs[i] + 1;
-                // } else if (m == roomwall2) {
-                //     texture_num = objIDs[i] + 2;
-                // } else if (m == object1) {
-                //     texture_num = objIDs[i] + 2;
-                // } else if (m == object2) {
-                //     texture_num = objIDs[i] + 2;
-                // }
+
                 glUniform1i(program.uniform("my_texture"), objIDs[i]);
-                // glUniform1i(program.uniform("my_texture"), texture_num);
-// **************************************************************************************************
                 glDrawArrays(GL_TRIANGLES, j*3, 3);
-                // if(draw_count%2 == 0)
-                // {
-                //     glDrawArrays(GL_LINE_LOOP, j*3, 3);
-                // }
-                // else if(draw_count%2 == 1)
-                // {
-                //     glDrawArrays(GL_LINE_LOOP, j*3, 3);
-                //     glDrawArrays(GL_TRIANGLES, j*3, 3);
-                // }
             }
         }
+        // Resizing the window will not distor the images
         glViewport(0, 0, width, height);
+
         // Swap front and back buffers
         glfwSwapBuffers(window);
 
@@ -737,9 +653,6 @@ int main(void)
         vec_VBO_V[i].free();
         vec_VBO_C[i].free();
     }
-// **************************************************************************************************
-    // glDeleteTextures(1, &tex);
-// **************************************************************************************************
     // Deallocate glfw internals
     glfwTerminate();
     return 0;
@@ -782,9 +695,6 @@ int triangle_under_cursor(MatrixXf V, Vector2d P)
         result = inside_triangle(V, i, P);
         if(result==1) {
             tri_id = i;
-        }
-        else if(result == -1) {
-            cout << "Not inside triangle" << endl;
         }
     }
     return result;
@@ -853,9 +763,9 @@ bool loadOBJ()
     MatrixXf N(3,0);
     FILE * file;
 
-
+    // Import objects from files
     if(m == object1){
-        file = fopen("../data/bartable1.obj", "r");
+        file = fopen("../data/desk.obj", "r");
     } else if(m == object2){
         file = fopen("../data/chair.obj", "r");
     }
@@ -864,7 +774,6 @@ bool loadOBJ()
         printf("File cannot be opened.\n");
         return false;
     }
-
 
     while(1) {
         char lineHeader[128];
@@ -876,25 +785,14 @@ bool loadOBJ()
         if (strcmp(lineHeader, "v") == 0){
             Vector3f vertex;
             fscanf(file, "%f %f %f\n", &vertex(0), &vertex(1), &vertex(2));
-            // cerr << vertex(0) << endl;
-            // cerr << vertex(1) << endl;
-            // cerr << vertex(2) << endl;
-            // cerr << " " << endl;
             temp_vertices.push_back(vertex);
         } else if (strcmp(lineHeader, "vt") == 0){
             Vector2f uv;
             fscanf(file, "%f %f\n", &uv(0), &uv(1));
-            // cerr << uv(0) << endl;
-            // cerr << uv(1) << endl;
-            // cerr << " "  << endl;
             temp_uvs.push_back(uv);
         } else if (strcmp(lineHeader, "vn") == 0){
             Vector3f normal;
             fscanf(file, "%f %f %f\n", &normal(0), &normal(1), &normal(2));
-            // cerr << normal(0) << endl;
-            // cerr << normal(1) << endl;
-            // cerr << normal(2) << endl;
-            // cerr << " " << endl;
             temp_normals.push_back(normal);
         } else if (strcmp(lineHeader, "f") == 0){
             std::string vertex1, vertex2, vertex3;
@@ -934,7 +832,6 @@ bool loadOBJ()
             Vector2f uv = temp_uvs[ uvIndex-1 ];
             UV.col(i) << uv(0), uv(1);
         }
-
         // Fill in the normal matrix
         N.conservativeResize(3, vertexIndices.size());
         for(unsigned int i=0; i<vertexIndices.size(); i++){
@@ -943,11 +840,6 @@ bool loadOBJ()
             N.col(i) << normal(0), normal(1), normal(2);
         }
     }
-
-        // cerr << "V.cols(): " << V.cols() << endl;
-        // cerr << "UV.cols(): " << UV.cols() << endl;
-        // cerr << "N.cols(): " << N.cols() << endl;
-
         double max_x = V(0,0);
         double min_x = V(0,1);
         for(int j = 0; j < V.cols(); j++)
@@ -991,12 +883,6 @@ bool loadOBJ()
 
         double canonical_min_z;
         canonical_min_z = (min_z - center_z)/scale_rate;
-        // if (m == ImportBcubeMode) {
-        //     depth_bumpy = canonical_min_z;
-        // }
-        // else if (m == ImportBunnyMode) {
-        //     depth_bunny = canonical_min_z;
-        // }
 
         for(int i = 0; i < V.rows(); i++) {
             for (int j = 0; j < V.cols(); j++) {
@@ -1047,9 +933,9 @@ bool loadOBJ()
 
 void loadFloor1()
 {
-    MatrixXf V(3,6);
-    MatrixXf UV(2,6);
-    MatrixXf N(3,6);
+    MatrixXf V(3,6);        // Matrix for vertices
+    MatrixXf UV(2,6);       // Matrix for texture coordinates
+    MatrixXf N(3,6);        // Matrix for normals
 
     V.col(0) << -3., -1.50001, 3.;
     V.col(1) << -3., -1.50001, -3.;
@@ -1266,10 +1152,7 @@ void loadWall1()
     vec_Mat_Model.push_back(modelMatrix);
     vec_Mat_Vertex.push_back(V);
 
-    if (m == roomwall1)
-        objIDs.push_back(2);
-    else if (m == roomwall2)
-        objIDs.push_back(3);
+    objIDs.push_back(2);
 }
 
 void loadWall2()
@@ -1357,8 +1240,5 @@ void loadWall2()
     vec_Mat_Model.push_back(modelMatrix);
     vec_Mat_Vertex.push_back(V);
 
-    if (m == roomwall1)
-        objIDs.push_back(2);
-    else if (m == roomwall2)
-        objIDs.push_back(3);
+    objIDs.push_back(3);
 }

@@ -20,12 +20,6 @@ Assignment2_BINARY_DIR:STATIC=/home/gracejwh/Documents/nyu/cg/assignment-4-grace
 //Value Computed by CMake
 Assignment2_SOURCE_DIR:STATIC=/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh
 
-//Value Computed by CMake
-Assignment4_BINARY_DIR:STATIC=/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh/build
-
-//Value Computed by CMake
-Assignment4_SOURCE_DIR:STATIC=/home/gracejwh/Documents/nyu/cg/assignment-4-gracejwh
-
 //Build shared libraries
 BUILD_SHARED_LIBS:BOOL=OFF
 
@@ -34,7 +28,7 @@ CMAKE_AR:FILEPATH=/usr/bin/ar
 
 //Choose the type of build, options are: None(CMAKE_CXX_FLAGS or
 // CMAKE_C_FLAGS used) Debug Release RelWithDebInfo MinSizeRel.
-CMAKE_BUILD_TYPE:STRING=Release
+CMAKE_BUILD_TYPE:STRING=
 
 //Enable/Disable color output during build.
 CMAKE_COLOR_MAKEFILE:BOOL=ON
@@ -244,26 +238,8 @@ OPENGL_glu_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libGLU.so
 //Path to a file.
 OPENGL_xmesa_INCLUDE_DIR:PATH=OPENGL_xmesa_INCLUDE_DIR-NOTFOUND
 
-//pkg-config executable
-PKG_CONFIG_EXECUTABLE:FILEPATH=/usr/bin/pkg-config
-
-//Path to a library.
-PNG_LIBRARY_DEBUG:FILEPATH=PNG_LIBRARY_DEBUG-NOTFOUND
-
-//Path to a library.
-PNG_LIBRARY_RELEASE:FILEPATH=/usr/lib/x86_64-linux-gnu/libpng.so
-
-//Path to a file.
-PNG_PNG_INCLUDE_DIR:PATH=/usr/include
-
 //Path to a library.
 RT_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/librt.so
-
-//Dependencies for target
-SOIL_LIB_DEPENDS:STATIC=
-
-//PNG file support
-WITH_PNG:BOOL=ON
 
 //Path to a file.
 X11_ICE_INCLUDE_PATH:PATH=/usr/include
@@ -448,23 +424,11 @@ X11_xf86misc_INCLUDE_PATH:PATH=X11_xf86misc_INCLUDE_PATH-NOTFOUND
 //Path to a file.
 X11_xf86vmode_INCLUDE_PATH:PATH=/usr/include
 
-//Path to a file.
-ZLIB_INCLUDE_DIR:PATH=/usr/include
-
-//Path to a library.
-ZLIB_LIBRARY_DEBUG:FILEPATH=ZLIB_LIBRARY_DEBUG-NOTFOUND
-
-//Path to a library.
-ZLIB_LIBRARY_RELEASE:FILEPATH=/usr/lib/x86_64-linux-gnu/libz.so
-
 //Dependencies for target
 glew_LIB_DEPENDS:STATIC=
 
 //Dependencies for target
 glfw_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-soil_LIB_DEPENDS:STATIC=
 
 
 ########################
@@ -616,40 +580,10 @@ CMAKE_UNAME:INTERNAL=/bin/uname
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //Details about finding OpenGL
 FIND_PACKAGE_MESSAGE_DETAILS_OpenGL:INTERNAL=[/usr/lib/x86_64-linux-gnu/libGL.so][/usr/include][v()]
-//Details about finding PNG
-FIND_PACKAGE_MESSAGE_DETAILS_PNG:INTERNAL=[/usr/lib/x86_64-linux-gnu/libpng.so][/usr/include][v1.2.54()]
-//Details about finding PkgConfig
-FIND_PACKAGE_MESSAGE_DETAILS_PkgConfig:INTERNAL=[/usr/bin/pkg-config][v0.29.1()]
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 //Details about finding X11
 FIND_PACKAGE_MESSAGE_DETAILS_X11:INTERNAL=[/usr/lib/x86_64-linux-gnu/libX11.so][/usr/include]
-//Details about finding ZLIB
-FIND_PACKAGE_MESSAGE_DETAILS_ZLIB:INTERNAL=[/usr/lib/x86_64-linux-gnu/libz.so][/usr/include][v1.2.8()]
-LIBPNG_CFLAGS:INTERNAL=
-LIBPNG_CFLAGS_I:INTERNAL=
-LIBPNG_CFLAGS_OTHER:INTERNAL=
-LIBPNG_FOUND:INTERNAL=
-LIBPNG_INCLUDEDIR:INTERNAL=
-LIBPNG_LIBDIR:INTERNAL=
-LIBPNG_LIBS:INTERNAL=
-LIBPNG_LIBS_L:INTERNAL=
-LIBPNG_LIBS_OTHER:INTERNAL=
-LIBPNG_LIBS_PATHS:INTERNAL=
-LIBPNG_PREFIX:INTERNAL=
-LIBPNG_STATIC_CFLAGS:INTERNAL=
-LIBPNG_STATIC_CFLAGS_I:INTERNAL=
-LIBPNG_STATIC_CFLAGS_OTHER:INTERNAL=
-LIBPNG_STATIC_LIBDIR:INTERNAL=
-LIBPNG_STATIC_LIBS:INTERNAL=
-LIBPNG_STATIC_LIBS_L:INTERNAL=
-LIBPNG_STATIC_LIBS_OTHER:INTERNAL=
-LIBPNG_STATIC_LIBS_PATHS:INTERNAL=
-LIBPNG_VERSION:INTERNAL=
-LIBPNG_libpng16_INCLUDEDIR:INTERNAL=
-LIBPNG_libpng16_LIBDIR:INTERNAL=
-LIBPNG_libpng16_PREFIX:INTERNAL=
-LIBPNG_libpng16_VERSION:INTERNAL=
 //ADVANCED property for variable: MATH_LIBRARY
 MATH_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OPENGL_INCLUDE_DIR
@@ -660,14 +594,6 @@ OPENGL_gl_LIBRARY-ADVANCED:INTERNAL=1
 OPENGL_glu_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OPENGL_xmesa_INCLUDE_DIR
 OPENGL_xmesa_INCLUDE_DIR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: PKG_CONFIG_EXECUTABLE
-PKG_CONFIG_EXECUTABLE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: PNG_LIBRARY_DEBUG
-PNG_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: PNG_LIBRARY_RELEASE
-PNG_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: PNG_PNG_INCLUDE_DIR
-PNG_PNG_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: RT_LIBRARY
 RT_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: X11_ICE_INCLUDE_PATH
@@ -794,10 +720,4 @@ X11_dpms_INCLUDE_PATH-ADVANCED:INTERNAL=1
 X11_xf86misc_INCLUDE_PATH-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: X11_xf86vmode_INCLUDE_PATH
 X11_xf86vmode_INCLUDE_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: ZLIB_INCLUDE_DIR
-ZLIB_INCLUDE_DIR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: ZLIB_LIBRARY_DEBUG
-ZLIB_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: ZLIB_LIBRARY_RELEASE
-ZLIB_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
 
