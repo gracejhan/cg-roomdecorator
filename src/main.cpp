@@ -610,7 +610,7 @@ int main(void)
         0, 0, 1, 0,
         0, 0, 0, 1;
 
-        Vector3f light(1., 1., 0.);
+        Vector3f light(1., 3., -1);
 
         // Clear the framebuffer
         glClearColor(255/255., 228/255., 225/255., 1.0f);
