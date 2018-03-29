@@ -1,5 +1,7 @@
-# Assignment_4
+NYU Fall 2017
+Computer Graphics
 Final Project
+
 "Virtual Room Decorator"
 
 
