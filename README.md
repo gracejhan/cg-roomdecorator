@@ -1,2 +1,2 @@
 # cg-roomdecorator
-Computer Graphics course project
+Final project for NYU Computer Graphics course
