@@ -1,8 +1,5 @@
-// CSCI-GA.2270-001 Computer Graphics (Fall 2017)
-// Assignment 4: Final Project
-// Name: Jungwoo Han 
-// Email: jh5990@nyu.edu
-// Student ID: N17456718
+// Computer Graphics
+// Final Project
 
 #define STB_IMAGE_IMPLEMENTATION
 // OpenGL Helpers to reduce the clutter
