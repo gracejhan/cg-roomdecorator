@@ -10,3 +10,6 @@ A 3D virtual room designer with OpenGL where users can customize the texture of 
 * Change the texture of furnitures, floor, or wall by adding custom image files
 * Move around or spin objects
 * Rotate the whole scene
+
+## Author
+* Grace Han
